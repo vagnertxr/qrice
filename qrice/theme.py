@@ -67,3 +67,46 @@ def load_qss(theme, overrides=None, icons=None, extra=""):
     return re.sub(
         r"@([\w-]+)", lambda m: str(variables.get(m.group(1), m.group(0))),
         qss)
+
+
+def build_palette(variables, base=None):
+    """A QPalette in the theme's colours, on top of ``base``.
+
+    Some widgets do not follow the style sheet and paint with the
+    application palette, e.g. layer and group names in the Layers pane
+    (QgsLayerTreeModel uses its Text colour).
+    """
+    from qgis.PyQt.QtGui import QColor, QPalette
+
+    palette = QPalette(base) if base is not None else QPalette()
+    Role, Group = QPalette.ColorRole, QPalette.ColorGroup
+
+    def color(name, fallback):
+        value = variables.get(name, fallback)
+        return QColor(value if str(value).startswith("#") else fallback)
+
+    roles = {
+        Role.Window: color("bg-window", "#efefef"),
+        Role.WindowText: color("text", "#000000"),
+        Role.Base: color("bg-panel", "#ffffff"),
+        Role.AlternateBase: color("bg-header", "#f7f7f7"),
+        Role.Text: color("text", "#000000"),
+        Role.Button: color("bg-header", "#efefef"),
+        Role.ButtonText: color("text", "#000000"),
+        Role.BrightText: color("text-emphasis", "#000000"),
+        Role.Highlight: color("selected", "#308cc6"),
+        Role.HighlightedText: color("selected-text", "#ffffff"),
+        Role.ToolTipBase: color("bg-header", "#ffffdc"),
+        Role.ToolTipText: color("text-emphasis", "#000000"),
+        Role.PlaceholderText: color("text-disabled", "#808080"),
+        Role.Link: color("accent", "#0000ff"),
+    }
+    for group in (Group.Active, Group.Inactive):
+        for role, value in roles.items():
+            palette.setColor(group, role, value)
+    disabled = color("text-disabled", "#808080")
+    for role, value in roles.items():
+        palette.setColor(Group.Disabled, role, value)
+    for role in (Role.WindowText, Role.Text, Role.ButtonText):
+        palette.setColor(Group.Disabled, role, disabled)
+    return palette

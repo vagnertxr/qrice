@@ -12,7 +12,7 @@ skin off, or to another skin, undoes it and restores the window state.
 
 from qgis.core import QgsSettings
 from qgis.PyQt.QtCore import QByteArray, QCoreApplication
-from qgis.PyQt.QtGui import QAction, QActionGroup, QIcon
+from qgis.PyQt.QtGui import QAction, QActionGroup, QIcon, QPalette
 from qgis.PyQt.QtWidgets import QApplication, QMenu, QToolBar
 
 from . import skins
@@ -27,7 +27,9 @@ from .panes import arrange_panes
 from .progress import Progress
 from .ribbon import build_ribbon
 from .symbology import ProSymbology
-from .theme import PLUGIN_DIR, load_qss, recolor_icons, theme_variables
+from .theme import (
+    PLUGIN_DIR, build_palette, load_qss, recolor_icons, theme_variables,
+)
 from .util import Changes, tr
 
 MENU_NAME = "&QRice"
@@ -100,6 +102,14 @@ def skin_qss(skin):
     extra = chrome_qss(skin.chrome, pro=skin.theme == THEME,
                        panel_bg=bool(panel))
     return load_qss(skin.theme, variables, icons, extra)
+
+
+def apply_palette(changes, variables):
+    """The application palette in the skin's colours, for what paints with
+    it instead of the style sheet (layer names in Layers)."""
+    old = QPalette(QApplication.palette())
+    QApplication.setPalette(build_palette(variables, old))
+    changes.add(lambda: QApplication.setPalette(old))
 
 
 def moves_panes(skin):
@@ -221,7 +231,8 @@ class QRicePlugin:
         """(relative duration, step) pairs; the bar moves with the time."""
         iface = self.iface
         steps = [(3, lambda: changes.set(QApplication.instance(),
-                                         "styleSheet", skin_qss(skin)))]
+                                         "styleSheet", skin_qss(skin))),
+                 (1, lambda: apply_palette(changes, skin_variables(skin)))]
         if skin.layout == "pro" or skin.icons == "pro":
             steps.append((5, lambda: apply_icon_theme(iface, changes)))
         if skin.layout == "pro":

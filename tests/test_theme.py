@@ -120,3 +120,22 @@ class SvgFiles(unittest.TestCase):
             except ET.ParseError as error:
                 broken.append(f"{path.name}: {error}")
         self.assertEqual(broken, [])
+
+
+class ApplicationPalette(unittest.TestCase):
+    """Layer names in Layers are drawn with the palette's Text colour."""
+
+    def test_palette_takes_the_theme_colours(self):
+        from qgis.PyQt.QtGui import QPalette
+
+        from qrice.theme import build_palette
+
+        palette = build_palette({"text": "#e6e6e6", "bg-panel": "#141414",
+                                 "text-disabled": "#777777"})
+        role, group = QPalette.ColorRole, QPalette.ColorGroup
+        self.assertEqual(palette.color(group.Active, role.Text).name(),
+                         "#e6e6e6")
+        self.assertEqual(palette.color(group.Active, role.Base).name(),
+                         "#141414")
+        self.assertEqual(palette.color(group.Disabled, role.Text).name(),
+                         "#777777")
