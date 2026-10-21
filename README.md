@@ -38,9 +38,10 @@ picture. Double-click a tile, or select it and click **Apply**.
 
 ![Skin Manager with the Tux skin selected: its colours on the Colours tab](docs/images/qrice-manager.png)
 
-Built-in skins are read-only. To change one, select it and click **Duplicate**: the
-copy (here *My Tux*) can be edited, and while it is the active skin every change
-shows at once.
+Built-in skins are read-only. To change one, select it and click **Duplicate…**
+and give the copy a name (here *My Tux*): the copy can be edited, and while it is
+the active skin every change shows at once. **Rename…** changes a copy's name
+later.
 
 - **Colours:** *Colours from the picture* builds the palette from the skin's
   picture; *Theme* forces dark or light. Click a swatch (accent, second accent,

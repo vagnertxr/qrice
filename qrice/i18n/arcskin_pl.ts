@@ -400,6 +400,18 @@
       <translation>Kraj</translation>
     </message>
     <message>
+      <source>Name</source>
+      <translation>Nazwa</translation>
+    </message>
+    <message>
+      <source>Duplicate skin</source>
+      <translation>Duplikuj skórkę</translation>
+    </message>
+    <message>
+      <source>Rename skin</source>
+      <translation>Zmień nazwę skórki</translation>
+    </message>
+    <message>
       <source>Delete skin</source>
       <translation>Usuń skórkę</translation>
     </message>
@@ -428,8 +440,12 @@
       <translation>Importuj…</translation>
     </message>
     <message>
-      <source>Duplicate</source>
-      <translation>Duplikuj</translation>
+      <source>Duplicate…</source>
+      <translation>Duplikuj…</translation>
+    </message>
+    <message>
+      <source>Rename…</source>
+      <translation>Zmień nazwę…</translation>
     </message>
     <message>
       <source>Export…</source>
@@ -502,6 +518,10 @@
     <message>
       <source>Back to the generated colour</source>
       <translation>Przywróć wygenerowany kolor</translation>
+    </message>
+    <message>
+      <source>{} copy</source>
+      <translation>{} (kopia)</translation>
     </message>
     <message>
       <source>Delete the skin “{}” and its pictures?</source>

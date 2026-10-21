@@ -130,7 +130,8 @@ class SkinManager(QDialog):
         row.addWidget(self.apply_button)
         self.buttons = {}
         for key, text, slot in (
-                ("duplicate", tr("Duplicate"), self.duplicate),
+                ("duplicate", tr("Duplicate…"), self.duplicate),
+                ("rename", tr("Rename…"), self.rename),
                 ("export", tr("Export…"), self.export_zip),
                 ("folder", tr("Open folder"), self.open_folder),
                 ("delete", tr("Delete"), self.delete)):
@@ -346,6 +347,7 @@ class SkinManager(QDialog):
             self.readonly.setVisible(not editable)
             self.tabs.setEnabled(editable)
             self.buttons["delete"].setEnabled(editable)
+            self.buttons["rename"].setEnabled(editable)
             data = skin.data
             self.auto_palette.setChecked(data.get("palette") == "auto")
             self.darkness.setCurrentIndex(
@@ -522,9 +524,31 @@ class SkinManager(QDialog):
             self._show_new(skins.new_skin(data.pop("name"), data))
             self.apply()
 
+    def _ask_name(self, title, current):
+        """A non-empty skin name from the user, or None (cancelled)."""
+        name, ok = QInputDialog.getText(self, title, tr("Name"),
+                                        text=current)
+        name = name.strip()
+        return name if ok and name else None
+
     def duplicate(self):
-        if self.skin is not None:
-            self._show_new(skins.duplicate_skin(self.skin))
+        if self.skin is None:
+            return
+        name = self._ask_name(tr("Duplicate skin"),
+                              tr("{} copy").format(self.skin.name))
+        if name:
+            self._show_new(skins.duplicate_skin(self.skin, name))
+
+    def rename(self):
+        """New display name for a user skin; its folder (and so whether
+        it is the active skin) stays the same."""
+        if self.skin is None or not self.skin.editable:
+            return
+        name = self._ask_name(tr("Rename skin"), self.skin.name)
+        if name and name != self.skin.name:
+            self.skin.data["name"] = name
+            skins.write_skin(self.skin)
+            self.refresh()
 
     def delete(self):
         if self.skin is None or not self.skin.editable:

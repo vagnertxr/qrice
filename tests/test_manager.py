@@ -44,3 +44,48 @@ class NewCharacter(unittest.TestCase):
         self.assertEqual(saved.layout, "pro")
         self.assertEqual(saved.section("panel_bg")["file"].name, "tux.png")
         self.assertNotEqual(skin_variables(saved)["accent"], fixed)
+
+
+class Names(unittest.TestCase):
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        patcher = mock.patch.object(skins, "user_dir",
+                                    return_value=Path(self.tmp.name))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.addCleanup(self.tmp.cleanup)
+        self.manager = SkinManager(FakePlugin())
+
+    def test_duplicate_asks_for_the_copy_s_name(self):
+        self.manager.skin = skins.load_skin("tux")
+        with mock.patch.object(self.manager, "_ask_name",
+                               return_value="Pinguim"):
+            self.manager.duplicate()
+        self.assertEqual(self.manager.skin.name, "Pinguim")
+        self.assertTrue(self.manager.skin.editable)
+
+    def test_cancelled_duplicate_creates_nothing(self):
+        self.manager.skin = skins.load_skin("tux")
+        before = len(skins.list_skins())
+        with mock.patch.object(self.manager, "_ask_name", return_value=None):
+            self.manager.duplicate()
+        self.assertEqual(len(skins.list_skins()), before)
+
+    def test_rename_keeps_the_folder(self):
+        copy = skins.duplicate_skin(skins.load_skin("tux"), "Old name")
+        self.manager.skin = copy
+        with mock.patch.object(self.manager, "_ask_name",
+                               return_value="New name"):
+            self.manager.rename()
+        renamed = skins.load_skin(copy.id)
+        self.assertEqual(renamed.name, "New name")
+        self.assertEqual(renamed.path, copy.path)
+
+    def test_built_in_skins_cannot_be_renamed(self):
+        self.manager.skin = skins.load_skin("tux")
+        with mock.patch.object(self.manager, "_ask_name",
+                               return_value="Nope") as ask:
+            self.manager.rename()
+        ask.assert_not_called()
+        self.assertEqual(skins.load_skin("tux").name, "Tux")

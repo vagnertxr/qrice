@@ -400,6 +400,18 @@
       <translation>País</translation>
     </message>
     <message>
+      <source>Name</source>
+      <translation>Nome</translation>
+    </message>
+    <message>
+      <source>Duplicate skin</source>
+      <translation>Duplicar skin</translation>
+    </message>
+    <message>
+      <source>Rename skin</source>
+      <translation>Renomear skin</translation>
+    </message>
+    <message>
       <source>Delete skin</source>
       <translation>Excluir skin</translation>
     </message>
@@ -428,8 +440,12 @@
       <translation>Importar…</translation>
     </message>
     <message>
-      <source>Duplicate</source>
-      <translation>Duplicar</translation>
+      <source>Duplicate…</source>
+      <translation>Duplicar…</translation>
+    </message>
+    <message>
+      <source>Rename…</source>
+      <translation>Renomear…</translation>
     </message>
     <message>
       <source>Export…</source>
@@ -502,6 +518,10 @@
     <message>
       <source>Back to the generated colour</source>
       <translation>Voltar à cor gerada</translation>
+    </message>
+    <message>
+      <source>{} copy</source>
+      <translation>{} (cópia)</translation>
     </message>
     <message>
       <source>Delete the skin “{}” and its pictures?</source>
