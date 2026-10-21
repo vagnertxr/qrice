@@ -222,8 +222,14 @@ def skin_from_picture(picture, name=None):
         [picture])
 
 
+CREDIT_KEYS = ("author", "license", "credit_url")
+
+
 def duplicate_skin(skin, name=None):
-    copy = new_skin(name or f"{skin.name} copy", dict(skin.data))
+    """A user copy of ``skin``. The copy is yours: it does not carry the
+    original's author, licence and source link."""
+    data = {k: v for k, v in skin.data.items() if k not in CREDIT_KEYS}
+    copy = new_skin(name or f"{skin.name} copy", data)
     for item in skin.path.iterdir():
         if item.name != "skin.json" and item.is_file():
             shutil.copy2(item, copy.path / item.name)

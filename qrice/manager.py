@@ -342,13 +342,16 @@ class SkinManager(QDialog):
         try:
             self.title.setText(skin.name)
             parts = []
-            if skin.author:
-                parts.append(tr("by {}").format(skin.author))
-            if skin.license:
-                parts.append(skin.license)
-            if skin.credit_url:
-                parts.append(f'<a href="{skin.credit_url}">{tr("source")}</a>')
+            if not skin.editable:  # no credit line on your own skins
+                if skin.author:
+                    parts.append(tr("by {}").format(skin.author))
+                if skin.license:
+                    parts.append(skin.license)
+                if skin.credit_url:
+                    parts.append(
+                        f'<a href="{skin.credit_url}">{tr("source")}</a>')
             self.credit.setText(" · ".join(parts))
+            self.credit.setVisible(bool(parts))
             editable = skin.editable
             self.readonly.setVisible(not editable)
             self.tabs.setEnabled(editable)

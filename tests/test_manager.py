@@ -138,3 +138,29 @@ class PanePictureSize(unittest.TestCase):
         out = Path(self.tmp.name) / "panel.png"
         render_panel_bg(panel["file"], "#000000", 0.2, panel["height"], out)
         self.assertEqual(QImage(str(out)).height(), 1100)
+
+
+class OwnSkinsHaveNoCredits(unittest.TestCase):
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        patcher = mock.patch.object(skins, "user_dir",
+                                    return_value=Path(self.tmp.name))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.addCleanup(self.tmp.cleanup)
+
+    def test_copies_drop_author_licence_and_source(self):
+        copy = skins.duplicate_skin(skins.load_skin("tux"), "Mine")
+        for key in skins.CREDIT_KEYS:
+            self.assertNotIn(key, skins.load_skin(copy.id).data)
+
+    def test_manager_shows_no_credit_line_for_own_skins(self):
+        manager = SkinManager(FakePlugin())
+        manager.skin = skins.load_skin("tux")
+        manager._load_editor()
+        self.assertIn("Larry Ewing", manager.credit.text())
+        old_copy = skins.new_skin("Old copy", {"author": "Someone"})
+        manager.skin = old_copy
+        manager._load_editor()
+        self.assertEqual(manager.credit.text(), "")
