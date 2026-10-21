@@ -154,7 +154,7 @@ QDockWidget > QWidget {
 /* The skin's picture, only behind Layers (Browser cut it off). */
 QDockWidget#Layers > QWidget {
     background-image: @panel-bg;
-    background-position: bottom right;
+    background-position: @panel-bg-position;
     background-repeat: no-repeat;
     background-origin: content;
 }

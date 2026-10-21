@@ -24,7 +24,7 @@ from .mascot import apply_mascot
 from .palette import (
     SOURCES, colors_of, derived, hex_color, mix, palette, parse_hex,
 )
-from .panel_bg import render_panel_bg
+from .panel_bg import position as panel_position, render_panel_bg
 from .panes import arrange_panes
 from .progress import Progress
 from .ribbon import build_ribbon
@@ -106,7 +106,10 @@ def skin_qss(skin):
         variables["panel-bg"] = render_panel_bg(
             panel["file"], variables.get("bg-panel", "#ffffff"),
             panel.get("opacity", 0.12), panel.get("height", 200),
-            cache / "panel.png")
+            cache / "panel.png",
+            (panel.get("align_x", "right"), panel.get("align_y", "bottom")),
+            (panel.get("margin_x", 0), panel.get("margin_y", 0)))
+        variables["panel-bg-position"] = panel_position(panel)
     extra = chrome_qss(skin.chrome, pro=skin.theme == THEME,
                        panel_bg=bool(panel))
     return load_qss(skin.theme, variables, icons, extra)

@@ -324,6 +324,14 @@
       <translation>Tamanho da imagem</translation>
     </message>
     <message>
+      <source>Pane picture position</source>
+      <translation>Posição da imagem</translation>
+    </message>
+    <message>
+      <source>Distance from the edge</source>
+      <translation>Distância da borda</translation>
+    </message>
+    <message>
       <source>Also over the map (mascot; covers part of the data)</source>
       <translation>Também sobre o mapa (mascote; cobre parte dos dados)</translation>
     </message>
@@ -528,12 +536,44 @@
       <translation>Voltar à cor gerada</translation>
     </message>
     <message>
+      <source>Horizontal distance from the chosen edge</source>
+      <translation>Distância horizontal da borda escolhida</translation>
+    </message>
+    <message>
+      <source>Vertical distance from the chosen edge (raise it if the picture is cut off at the bottom)</source>
+      <translation>Distância vertical da borda escolhida (aumente se a imagem estiver cortada embaixo)</translation>
+    </message>
+    <message>
       <source>{} copy</source>
       <translation>{} (cópia)</translation>
     </message>
     <message>
       <source>Delete the skin “{}” and its pictures?</source>
       <translation>Excluir a skin “{}” e suas imagens?</translation>
+    </message>
+    <message>
+      <source>Left</source>
+      <translation>Esquerda</translation>
+    </message>
+    <message>
+      <source>Centre</source>
+      <translation>Centro</translation>
+    </message>
+    <message>
+      <source>Right</source>
+      <translation>Direita</translation>
+    </message>
+    <message>
+      <source>Top</source>
+      <translation>Topo</translation>
+    </message>
+    <message>
+      <source>Middle</source>
+      <translation>Meio</translation>
+    </message>
+    <message>
+      <source>Bottom</source>
+      <translation>Base</translation>
     </message>
     <message>
       <source>flag</source>

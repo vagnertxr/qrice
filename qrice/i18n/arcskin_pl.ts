@@ -324,6 +324,14 @@
       <translation>Rozmiar obrazu panelu</translation>
     </message>
     <message>
+      <source>Pane picture position</source>
+      <translation>Położenie obrazu panelu</translation>
+    </message>
+    <message>
+      <source>Distance from the edge</source>
+      <translation>Odległość od krawędzi</translation>
+    </message>
+    <message>
       <source>Also over the map (mascot; covers part of the data)</source>
       <translation>Również na mapie (maskotka; zasłania część danych)</translation>
     </message>
@@ -528,12 +536,44 @@
       <translation>Przywróć wygenerowany kolor</translation>
     </message>
     <message>
+      <source>Horizontal distance from the chosen edge</source>
+      <translation>Odległość pozioma od wybranej krawędzi</translation>
+    </message>
+    <message>
+      <source>Vertical distance from the chosen edge (raise it if the picture is cut off at the bottom)</source>
+      <translation>Odległość pionowa od wybranej krawędzi (zwiększ, jeśli obraz jest ucięty u dołu)</translation>
+    </message>
+    <message>
       <source>{} copy</source>
       <translation>{} (kopia)</translation>
     </message>
     <message>
       <source>Delete the skin “{}” and its pictures?</source>
       <translation>Usunąć skórkę „{}” i jej obrazy?</translation>
+    </message>
+    <message>
+      <source>Left</source>
+      <translation>Lewo</translation>
+    </message>
+    <message>
+      <source>Centre</source>
+      <translation>Środek</translation>
+    </message>
+    <message>
+      <source>Right</source>
+      <translation>Prawo</translation>
+    </message>
+    <message>
+      <source>Top</source>
+      <translation>Góra</translation>
+    </message>
+    <message>
+      <source>Middle</source>
+      <translation>Środek</translation>
+    </message>
+    <message>
+      <source>Bottom</source>
+      <translation>Dół</translation>
     </message>
     <message>
       <source>flag</source>

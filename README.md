@@ -48,8 +48,10 @@ later.
   window, panes, headers, text, selection, borders) to pick a colour yourself; the
   **×** next to it goes back to the generated one.
 - **Picture:** **Choose…** another picture, e.g. another character for a copy of
-  *Pro QGIS-tan*. It shows faded behind the Layers pane, with its own opacity and
-  size (height in pixels); *Also over the map* turns
+  *Pro QGIS-tan*. It shows faded behind the Layers pane, with its own opacity,
+  size (height in pixels), position (left / centre / right, top / middle /
+  bottom) and distance from that edge, e.g. to lift a picture whose feet are cut
+  off at the bottom of the pane; *Also over the map* turns
   it into a mascot in a corner of the map (it covers part of the data, so no
   bundled skin does that).
 

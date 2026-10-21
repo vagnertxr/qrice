@@ -37,3 +37,4 @@
 @dock-title-padding: 5px 10px;
 @dock-title-size: 10pt;
 @panel-bg: none;
+@panel-bg-position: bottom right;

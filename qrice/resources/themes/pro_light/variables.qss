@@ -30,3 +30,4 @@
 @selected-soft2: #dbecf8;
 @bg-alt: #ececec;
 @table-selection: #80ffff;
+@panel-bg-position: bottom right;

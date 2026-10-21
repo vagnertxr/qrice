@@ -212,6 +212,30 @@ class SkinManager(QDialog):
                                         "Layers pane"))
         self.panel_height.valueChanged.connect(self._edited)
         form.addRow(tr("Pane picture size"), self.panel_height)
+        row = QHBoxLayout()
+        self.align_x, self.align_y = QComboBox(), QComboBox()
+        for combo, values in ((self.align_x, (("left", tr("Left")),
+                                              ("center", tr("Centre")),
+                                              ("right", tr("Right")))),
+                              (self.align_y, (("top", tr("Top")),
+                                              ("center", tr("Middle")),
+                                              ("bottom", tr("Bottom"))))):
+            for value, text in values:
+                combo.addItem(text, value)
+            combo.currentIndexChanged.connect(self._edited)
+            row.addWidget(combo)
+        form.addRow(tr("Pane picture position"), row)
+        row = QHBoxLayout()
+        self.margin_x, self.margin_y = (
+            QSpinBox(maximum=800, singleStep=10, suffix=" px",
+                     toolTip=tip)
+            for tip in (tr("Horizontal distance from the chosen edge"),
+                        tr("Vertical distance from the chosen edge (raise "
+                           "it if the picture is cut off at the bottom)")))
+        for spin in (self.margin_x, self.margin_y):
+            spin.valueChanged.connect(self._edited)
+            row.addWidget(spin)
+        form.addRow(tr("Distance from the edge"), row)
         self.mascot = QCheckBox(tr("Also over the map (mascot; covers "
                                    "part of the data)"))
         self.mascot.toggled.connect(self._edited)
@@ -378,6 +402,12 @@ class SkinManager(QDialog):
             self.panel_bg.setChecked(bool(panel))
             self.panel_opacity.setValue(round(panel.get("opacity", 0.1) * 100))
             self.panel_height.setValue(int(panel.get("height", 200)))
+            self.align_x.setCurrentIndex(
+                max(self.align_x.findData(panel.get("align_x", "right")), 0))
+            self.align_y.setCurrentIndex(
+                max(self.align_y.findData(panel.get("align_y", "bottom")), 0))
+            self.margin_x.setValue(int(panel.get("margin_x", 0)))
+            self.margin_y.setValue(int(panel.get("margin_y", 0)))
             self.layout_combo.setCurrentIndex(
                 max(self.layout_combo.findData(skin.layout), 0))
             chrome = dict(CHROME_DEFAULTS)
@@ -444,6 +474,10 @@ class SkinManager(QDialog):
                 panel["file"] = picture
             panel["opacity"] = self.panel_opacity.value() / 100
             panel["height"] = self.panel_height.value()
+            panel["align_x"] = self.align_x.currentData()
+            panel["align_y"] = self.align_y.currentData()
+            panel["margin_x"] = self.margin_x.value()
+            panel["margin_y"] = self.margin_y.value()
         else:
             data.pop("panel_bg", None)
         data["layout"] = self.layout_combo.currentData()

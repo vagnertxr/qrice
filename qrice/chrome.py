@@ -226,7 +226,7 @@ QComboBox {
 PRO_PANEL_BG_QSS = """
 QDockWidget#Layers > QWidget {
     background-image: @panel-bg;
-    background-position: bottom right;
+    background-position: @panel-bg-position;
     background-repeat: no-repeat;
 }
 QDockWidget QTreeView,

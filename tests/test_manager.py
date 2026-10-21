@@ -164,3 +164,34 @@ class OwnSkinsHaveNoCredits(unittest.TestCase):
         manager.skin = old_copy
         manager._load_editor()
         self.assertEqual(manager.credit.text(), "")
+
+
+class PanePicturePosition(unittest.TestCase):
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        patcher = mock.patch.object(skins, "user_dir",
+                                    return_value=Path(self.tmp.name))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.addCleanup(self.tmp.cleanup)
+
+    def test_position_and_margin_reach_the_style_sheet_and_picture(self):
+        from qgis.PyQt.QtGui import QImage
+
+        from qrice.plugin import skin_qss
+
+        copy = skins.duplicate_skin(skins.load_skin("tux"), "Moved Tux")
+        manager = SkinManager(FakePlugin())
+        manager.skin = copy
+        manager._load_editor()
+        manager.panel_height.setValue(200)
+        manager.align_x.setCurrentIndex(manager.align_x.findData("left"))
+        manager.margin_y.setValue(60)
+        saved = skins.load_skin(copy.id)
+        qss = skin_qss(saved)
+        self.assertIn("background-position: bottom left;", qss)
+        picture = QImage(str(skins.cache_dir(copy.id) / "panel.png"))
+        self.assertEqual(picture.height(), 260)  # 200 + 60 below it
+        # The added strip at the bottom is transparent.
+        self.assertEqual(picture.pixelColor(5, 255).alpha(), 0)
