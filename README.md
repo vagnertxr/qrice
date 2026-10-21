@@ -123,6 +123,9 @@ skin folders in `dev-skins/` (git-ignored, not packaged) and start QGIS with
 
 ## Installation
 
+Download the latest .zip from the Releases tab
+
+Or:
 1. Build the ZIP with `python scripts/package.py` (`dist/qrice-<version>.zip`).
 2. In QGIS open *Plugins → Manage and Install Plugins… → Install from ZIP*,
    choose the file and click *Install Plugin*.
