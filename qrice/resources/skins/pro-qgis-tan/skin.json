@@ -1,0 +1,23 @@
+{
+  "name": "Pro QGIS-tan",
+  "category": "anime",
+  "author": "Kasuga (Wikipe-tan); vector by Editor at Large; QGIS-tan edit for QRice; Pro layout by EnviroSolutions (ArcSkin)",
+  "license": "CC BY-SA 3.0 (picture); GPL-2.0 (layout)",
+  "credit_url": "https://commons.wikimedia.org/wiki/File:Wikipe-tan_full_length.svg",
+  "layout": "pro",
+  "icons": "pro",
+  "colors": {
+    "base": "#f4f7f1",
+    "accent": "#6fa64a",
+    "accent2": "#9cc47c"
+  },
+  "dark": false,
+  "panel_bg": {
+    "file": "qgis-tan.png",
+    "opacity": 0.18,
+    "height": 240
+  },
+  "chrome": {
+    "glow": 10
+  }
+}

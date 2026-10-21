@@ -1,12 +1,12 @@
 """Translations: extract tr("...") strings to .ts and compile .ts to .qm.
 
 Usage:
-    python scripts/i18n.py update    # refresh arcskin/i18n/*.ts from code
-    python scripts/i18n.py compile   # arcskin/i18n/*.ts -> *.qm
+    python scripts/i18n.py update    # refresh qrice/i18n/*.ts from code
+    python scripts/i18n.py compile   # qrice/i18n/*.ts -> *.qm
 
 The .ts files are standard Qt Linguist files (also usable with Transifex).
 Compilation is done here, so no Qt tools (lrelease) are needed. To add a
-language, create an empty ``arcskin/i18n/arcskin_<code>.ts`` and run update.
+language, create an empty ``qrice/i18n/arcskin_<code>.ts`` and run update.
 """
 
 import ast
@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PLUGIN = ROOT / "arcskin"
+PLUGIN = ROOT / "qrice"
 I18N = PLUGIN / "i18n"
 CONTEXT = "ArcSkin"
 QM_MAGIC = bytes.fromhex("3cb86418caef9c95cd211cbf60a1bddd")

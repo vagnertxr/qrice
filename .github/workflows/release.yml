@@ -20,7 +20,7 @@ jobs:
 
       - name: Check tag matches metadata.txt version
         run: |
-          VERSION=$(grep -E '^version=' arcskin/metadata.txt | cut -d= -f2)
+          VERSION=$(grep -E '^version=' qrice/metadata.txt | cut -d= -f2)
           if [ "v${VERSION}" != "${GITHUB_REF_NAME}" ]; then
             echo "Tag ${GITHUB_REF_NAME} does not match metadata version ${VERSION}"
             exit 1

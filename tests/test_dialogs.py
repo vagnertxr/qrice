@@ -6,7 +6,7 @@ from qgis.core import QgsVectorLayer
 from qgis.PyQt import sip
 from qgis.PyQt.QtWidgets import QDialog, QTableView
 
-from arcskin.dialogs import TableFooter
+from qrice.dialogs import TableFooter
 
 
 class Footer(unittest.TestCase):

@@ -1,4 +1,4 @@
-"""Generate arcskin/resources/qgis_theme: every QGIS icon in the Pro style.
+"""Generate qrice/resources/qgis_theme: every QGIS icon in the Pro style.
 
 Run with QGIS's Python (the icons live in QGIS's compiled Qt resources):
 
@@ -20,8 +20,8 @@ import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ICONS = ROOT / "arcskin" / "resources" / "icons"
-OUT = ROOT / "arcskin" / "resources" / "qgis_theme"
+ICONS = ROOT / "qrice" / "resources" / "icons"
+OUT = ROOT / "qrice" / "resources" / "qgis_theme"
 SOURCE = ":/images/themes/default"
 
 # Colour family -> (light, mid, dark) Pro palette tones.
@@ -131,7 +131,8 @@ HEX = re.compile(r"#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b")
 GRADIENT = re.compile(
     r"<(linear|radial)Gradient\b([^>]*?)(/>|>(.*?)</\1Gradient>)", re.S)
 JUNK = re.compile(r"<metadata\b.*?</metadata>|<!--.*?-->"
-                  r"|<sodipodi:namedview\b.*?(?:/>|</sodipodi:namedview>)",
+                  r"|<sodipodi:namedview\b[^>]*/>"
+                  r"|<sodipodi:namedview\b[^>]*>.*?</sodipodi:namedview>",
                   re.S)
 
 

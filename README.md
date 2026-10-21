@@ -1,24 +1,102 @@
-# ArcSkin
+# QRice
 
-[![Tests](https://github.com/envirosolutionspl/arcskin/actions/workflows/tests.yml/badge.svg)](https://github.com/envirosolutionspl/arcskin/actions/workflows/tests.yml)
-[![Qt5 and Qt6 compatibility](https://github.com/envirosolutionspl/arcskin/actions/workflows/qt5-qt6-compat.yml/badge.svg)](https://github.com/envirosolutionspl/arcskin/actions/workflows/qt5-qt6-compat.yml)
-[![Security and quality](https://github.com/envirosolutionspl/arcskin/actions/workflows/security_and_quality.yml/badge.svg)](https://github.com/envirosolutionspl/arcskin/actions/workflows/security_and_quality.yml)
-[![Release](https://img.shields.io/github/v/release/envirosolutionspl/arcskin)](https://github.com/envirosolutionspl/arcskin/releases/latest)
+**QRice is a skin manager for QGIS**: rice it like your desktop. A skin gives QGIS
+its colours (picked, or taken from a picture, pywal style), a faded picture behind
+the panes, the window chrome (gaps, rounded corners, a glowing focus frame, glossy
+bars, a polybar-style status bar) and a layout (tiling, zen or the
+ArcGIS Pro-style ribbon). One click on, one click off: switching the skin off
+restores QGIS exactly as it was.
 
-**ArcSkin gives QGIS an interface inspired by ArcGIS Pro**: a ribbon, Pro-style
-panes, view tabs above the map, Pro's map status bar, light flat icons for the whole
-of QGIS, Pro's default symbology and colour ramps. Everything is switched on with one
-click and fully reverted with the next one.
+QRice is a fork of [ArcSkin](https://github.com/envirosolutionspl/arcskin) by
+EnviroSolutions; ArcSkin's ArcGIS Pro look lives on as the *Pro Light* skin.
 
-It is meant for people who know ArcGIS Pro and want to feel at home in QGIS, for
-training rooms that teach both, and for organisations moving from Esri to QGIS.
+## Skins
 
-![ArcSkin demo project: ribbon, Contents, view tabs, Catalog and the map status bar](docs/images/overview.png)
+| Skin | What it is |
+|---|---|
+| Tux, Tux Redesign | Linux's penguin; dark theme with polybar / light theme with tiling layout |
+| QGIS-tan | Wikipe-tan's green sister: map pins in her hair, the QGIS logo on her apron |
+| Wikipe-tan | Wikipedia's mascot by Kasuga |
+| Brasil, Estados Unidos, China, Cuba, Palestina (and any other country) | Flag behind the panes, palette and bars in the flag's colours |
+| Rice Dark, Rice Light, Zen | Colours only; Zen hides everything but the map |
+| Pro Light (ArcSkin) | The ArcGIS Pro-style ribbon, panes, icons and symbology |
+| Pro Dark, Pro QGIS-tan | The Pro layout riced: dark palette, gaps, rounded corners, glow and shine (any skin with `"layout": "pro"` takes the chrome settings) |
 
-> ArcSkin is an independent open source project. It is not affiliated with,
-> sponsored or endorsed by Esri. ArcGIS and ArcGIS Pro are trademarks of Esri.
+Every bundled picture has a free licence; see
+[CREDITS.md](qrice/resources/skins/CREDITS.md).
 
-## Features
+**Your own skin:** *Plugins → QRice → Skin Manager… → New from picture…* turns any
+picture into a skin (mascot, pane picture and a palette from its colours). *New flag
+skin…* does the same for a country. Edit colours, mascot and window chrome in the
+manager's tabs; the active skin updates live. Skins can be exported and imported as
+ZIP files. Your skins live in `<QGIS profile>/qrice/skins/`.
+
+### Window chrome and layouts
+
+| Setting | Values |
+|---|---|
+| Layout | keep my layout · tiling (map + Layers over Browser) · zen (map only) · ArcGIS Pro-style |
+| Gaps, corner radius, focus frame | pixels |
+| Pane titles | full · minimal · hidden |
+| Menu bar | shown · hidden |
+| Toolbars | top · left · hidden |
+| Status bar | plain · polybar |
+| Map background | keep · theme |
+| Bar colours | plain · accent (menu bar, pane titles and status bar in the skin's colours) |
+| Glow | px of neon halo around the focused pane; optionally pulsing |
+| Shine | glossy gradients on bars, tabs and buttons |
+| Map frame | px of accent frame around the map |
+| Font, font size, window opacity | any installed font; opacity needs a compositor |
+
+Shortcuts while a skin is on: **Ctrl+Alt+M** shows or hides a hidden menu bar,
+**Ctrl+Alt+Z** brings the panes back in the zen layout.
+
+### skin.json
+
+A skin is a folder with `skin.json` and its pictures:
+
+```json
+{"name": "Tux", "category": "mascot", "author": "Larry Ewing", "license": "…",
+ "palette": "auto", "dark": true,
+ "variables": {"accent": "#f5c211"},
+ "panel_bg": {"file": "tux.png", "opacity": 0.2, "height": 220},
+ "layout": "none",
+ "chrome": {"gaps": 6, "radius": 8, "statusbar": "polybar",
+            "map_background": "theme", "glow": 18, "glow_pulse": true,
+            "shine": true, "map_frame": 0}}
+```
+
+`variables` use the names of
+[`themes/rice/variables.qss`](qrice/resources/themes/rice/variables.qss); `colors`
+(`base`, `accent`, `accent2`) force exact colours, e.g. a club's. A skin may also show
+its picture over the map (`"mascot": {"file": …, "corner": "bottom-right",
+"height": 0.3}`); no bundled skin does, since it covers part of the data. The mascot is
+a widget, not a map item: clicks go through it and it never appears in exports or
+print layouts. Animated GIFs play.
+
+### Test skins
+
+For skins that must not be committed or shipped (football clubs, memes), put
+skin folders in `dev-skins/` (git-ignored, not packaged) and start QGIS with
+`QRICE_DEV_SKINS=/path/to/dev-skins qgis`.
+
+## Requirements
+
+- QGIS 4.x (Qt 6), the main platform
+- QGIS 3.40 or newer (Qt 5)
+
+## Installation
+
+1. Build the ZIP with `python scripts/package.py` (`dist/qrice-<version>.zip`).
+2. In QGIS open *Plugins → Manage and Install Plugins… → Install from ZIP*,
+   choose the file and click *Install Plugin*.
+
+The active skin (Tux by default) is applied as soon as the plugin is loaded; switch
+it with *Plugins → QRice → Skins*, off and on with *Plugins → QRice → QRice skin*
+or the toolbar button.
+
+## The Pro Light skin (from ArcSkin)
+
 
 **Ribbon and title row**
 
@@ -103,36 +181,7 @@ last record, "N of M selected", filters, zoom slider, refresh).
 
 ![Basemap gallery](docs/images/basemap_gallery.png)
 
-## Requirements
-
-- QGIS 4.x (Qt 6), the main platform
-- QGIS 3.40 or newer (Qt 5)
-
-## Installation
-
-1. Download `arcskin-<version>.zip` from the releases.
-2. In QGIS open *Plugins → Manage and Install Plugins… → Install from ZIP*,
-   choose the file and click *Install Plugin*.
-
-The ArcSkin look is applied as soon as the plugin is installed. Switching takes a
-few seconds; a progress box shows the work.
-
-## Turning the look on and off
-
-| What you want | How |
-|---|---|
-| Switch the look off for now | Blue **Project** button → **ArcSkin look** |
-| Switch it on again | **Plugins → ArcSkin → ArcSkin look** (QGIS menu bar) |
-| Keep plain QGIS after restarting | **Plugins → Manage and Install Plugins… → Installed**, untick **ArcSkin** |
-| Remove the plugin | Same dialog, select **ArcSkin**, **Uninstall Plugin** |
-
-While the plugin is active, ArcSkin is switched on at every QGIS start.
-
-Switching the look off restores QGIS as it was: toolbars, panes and their
-positions, the UI theme, icons, the status bar, project styles and the colour ramps
-added to the QGIS style. Your projects are not changed by switching.
-
-The first time ArcSkin is switched on, most icons change at once. Layer icons in
+The first time Pro Light is switched on, most icons change at once. Layer icons in
 *Contents* and *Catalog* follow after a QGIS restart; a message says so.
 
 ## Demo project
@@ -154,8 +203,16 @@ coast*) and a print layout. The data come from Natural Earth (public domain).
 ## Development
 
 ```
-arcskin/                      the plugin (packed into the ZIP)
-  plugin.py                   on / off switch, style sheet, progress box
+qrice/                        the plugin (packed into the ZIP)
+  plugin.py                   on / off switch, skin steps, progress box
+  skins.py                    skin folders and skin.json (built-in, user, dev)
+  theme.py                    theme folder + variables -> style sheet
+  palette.py                  colours from a picture (median cut, WCAG contrast)
+  mascot.py                   mascot over the map canvas
+  panel_bg.py                 faded picture behind the panes
+  chrome.py                   gaps, corners, bars, tiling and zen layouts
+  flags.py                    country flags as skins
+  manager.py                  Skin Manager dialog
   util.py                     tr(), Pro icons, undo log of all changes (Changes)
   ribbon.py                   ribbon, title row, Project menu
   panes.py                    Contents, Catalog, Geoprocessing, Symbology panes
@@ -169,7 +226,7 @@ arcskin/                      the plugin (packed into the ZIP)
   resources/                  icons, style sheets, generated icon theme, colour ramps
   i18n/                       translations (.ts sources)
 scripts/
-  package.py                  builds dist/arcskin-<version>.zip
+  package.py                  builds dist/qrice-<version>.zip
   i18n.py                     update .ts files from the code, compile .qm files
   build_icon_theme.py         generates the QGIS icon theme (run with python-qgis)
   build_demo.py               builds the demo project (QGIS Python console)
@@ -177,7 +234,7 @@ demo/                         demo project and data
 docs/images/                  screenshots
 ```
 
-Every change ArcSkin makes to QGIS goes through `util.Changes`, which records how to
+Every change QRice makes to QGIS goes through `util.Changes`, which records how to
 undo it; switching off replays that log backwards.
 
 For development, link the plugin folder into your QGIS profile (PowerShell as
@@ -185,8 +242,14 @@ administrator, or with Windows developer mode on):
 
 ```powershell
 New-Item -ItemType SymbolicLink `
-  -Path "$env:APPDATA\QGIS\QGIS4\profiles\default\python\plugins\arcskin" `
-  -Target "$PWD\arcskin"
+  -Path "$env:APPDATA\QGIS\QGIS4\profiles\default\python\plugins\qrice" `
+  -Target "$PWD\qrice"
+```
+
+On Linux:
+
+```bash
+ln -s "$PWD/qrice" ~/.local/share/QGIS/QGIS4/profiles/default/python/plugins/qrice
 ```
 
 **Tests.** `tests/` holds unit tests that need no QGIS window: coordinate
@@ -207,18 +270,24 @@ yet).
 
 **Translations.** Texts in the code are English and go through `tr("...")`. After
 changing them run `python scripts/i18n.py update`, translate the new entries in
-`arcskin/i18n/arcskin_pl.ts` (Qt Linguist or a text editor) and the `.qm` files are
+`qrice/i18n/arcskin_pl.ts` (Qt Linguist or a text editor) and the `.qm` files are
 compiled when packaging. For a new language, add an empty
-`arcskin/i18n/arcskin_<code>.ts` and run `update`.
+`qrice/i18n/arcskin_<code>.ts` and run `update`.
 
 **Packaging and releases.** `python scripts/package.py` writes
-`dist/arcskin-<version>.zip`. For a release, raise `version` in
-`arcskin/metadata.txt`, tag the commit `v<version>` and push the tag; GitHub
+`dist/qrice-<version>.zip`. For a release, raise `version` in
+`qrice/metadata.txt`, tag the commit `v<version>` and push the tag; GitHub
 Actions builds the ZIP and attaches it to the release.
 
 ## Credits and licence
 
-ArcSkin is licensed under the GPL-2.0-or-later, see [LICENSE](LICENSE). The icon
+QRice is licensed under the GPL-2.0-or-later, see [LICENSE](LICENSE). It is based
+on ArcSkin by EnviroSolutions (GPL-2.0-or-later). Mascot pictures: see
+[CREDITS.md](qrice/resources/skins/CREDITS.md). Country flags:
+[flag-icons](https://github.com/lipis/flag-icons) (MIT). The Pro icon
 theme is derived from QGIS's own icons (GPL-2.0-or-later). Demo data: Natural
 Earth (public domain). Basemaps: © OpenStreetMap contributors, OpenTopoMap
 (CC-BY-SA), CARTO, Sentinel-2 cloudless by EOX IT Services GmbH (CC BY 4.0).
+
+> QRice and ArcSkin are independent open source projects, not affiliated with,
+> sponsored or endorsed by Esri. ArcGIS and ArcGIS Pro are trademarks of Esri.

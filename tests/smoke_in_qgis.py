@@ -17,7 +17,7 @@ from qgis.PyQt.QtWidgets import (
     QApplication, QTabBar, QToolBar, QToolButton, QWidget,
 )
 
-from arcskin.ribbon import ADDIN_HOSTS
+from qrice.ribbon import ADDIN_HOSTS
 
 # QGIS toolbars and tools the ribbon does not offer (yet).
 LATER_BARS = {"mLabelToolBar", "mRasterToolBar", "mAnnotationsToolBar",
@@ -82,7 +82,7 @@ def missing_from_ribbon(win):
 
 def smoke_test(iface):
     """Failed checks of an off / on cycle (none when all is well)."""
-    plugin = qgis.utils.plugins["arcskin"]
+    plugin = qgis.utils.plugins["qrice"]
     win, canvas = iface.mainWindow(), iface.mapCanvas()
     failures = []
 

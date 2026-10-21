@@ -4,10 +4,10 @@ import re
 import unittest
 
 import build_icon_theme
-from arcskin import basemaps, contents_views, dialogs, panes, ribbon
-from arcskin.icon_theme import SOURCE as THEME_DIR
-from arcskin.plugin import PLUGIN_DIR, THEME, load_qss
-from arcskin.util import ICON_DIR
+from qrice import basemaps, contents_views, dialogs, panes, ribbon
+from qrice.icon_theme import SOURCE as THEME_DIR
+from qrice.plugin import PLUGIN_DIR, THEME, load_qss
+from qrice.util import ICON_DIR
 
 CODE = "\n".join(path.read_text(encoding="utf-8")
                  for path in PLUGIN_DIR.glob("*.py"))
@@ -106,3 +106,17 @@ class Soften(unittest.TestCase):
     def test_other_outlines_are_left_alone(self):
         svg = '<svg><path d="M0 0" fill="#ffffff" stroke="#007ac2"/></svg>'
         self.assertEqual(build_icon_theme.soften(svg), svg)
+
+
+class SvgFiles(unittest.TestCase):
+
+    def test_every_bundled_svg_is_well_formed_xml(self):
+        import xml.etree.ElementTree as ET
+
+        broken = []
+        for path in (PLUGIN_DIR / "resources").rglob("*.svg"):
+            try:
+                ET.parse(path)
+            except ET.ParseError as error:
+                broken.append(f"{path.name}: {error}")
+        self.assertEqual(broken, [])

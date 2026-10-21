@@ -7,7 +7,7 @@ from qgis.core import (
     QgsSingleSymbolRenderer, QgsVectorLayer,
 )
 
-from arcskin import symbology
+from qrice import symbology
 
 
 def memory_layer(geometry):

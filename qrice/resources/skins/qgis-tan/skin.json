@@ -1,0 +1,30 @@
+{
+  "name": "QGIS-tan",
+  "category": "anime",
+  "author": "Kasuga (Wikipe-tan); vector by Editor at Large; QGIS-tan edit for QRice (green hair and dress, map pins, QGIS logo)",
+  "license": "CC BY-SA 3.0",
+  "credit_url": "https://commons.wikimedia.org/wiki/File:Wikipe-tan_full_length.svg",
+  "colors": {
+    "base": "#0f1f0a",
+    "accent": "#589632",
+    "accent2": "#eeee33"
+  },
+  "dark": true,
+  "panel_bg": {
+    "file": "qgis-tan.png",
+    "opacity": 0.25,
+    "height": 260
+  },
+  "chrome": {
+    "gaps": 10,
+    "radius": 12,
+    "focus_border": 2,
+    "bars": "accent",
+    "shine": true,
+    "glow": 24,
+    "glow_pulse": true,
+    "statusbar": "polybar",
+    "map_background": "theme",
+    "map_frame": 2
+  }
+}

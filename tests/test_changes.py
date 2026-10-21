@@ -6,7 +6,7 @@ from qgis.PyQt import sip
 from qgis.PyQt.QtCore import QObject
 from qgis.PyQt.QtWidgets import QWidget
 
-from arcskin.util import Changes
+from qrice.util import Changes
 
 
 class UndoLog(unittest.TestCase):

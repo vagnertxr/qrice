@@ -1,0 +1,23 @@
+{
+  "name": "Pro Dark (ArcSkin)",
+  "category": "theme",
+  "author": "EnviroSolutions (ArcSkin); dark rice for QRice",
+  "license": "GPL-2.0",
+  "credit_url": "https://github.com/envirosolutionspl/arcskin",
+  "layout": "pro",
+  "icons": "pro",
+  "colors": {
+    "base": "#1e222a",
+    "accent": "#1f8fdb",
+    "accent2": "#35ac46"
+  },
+  "dark": true,
+  "chrome": {
+    "gaps": 6,
+    "radius": 6,
+    "glow": 18,
+    "shine": true,
+    "map_background": "theme",
+    "map_frame": 1
+  }
+}

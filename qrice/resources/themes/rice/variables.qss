@@ -1,0 +1,39 @@
+/* Rice Dark: default colours of the "rice" theme. A skin's "variables"
+   (or a palette generated from its picture) override them. */
+@bg-window: #151320;
+@bg-panel: #1c1a29;
+@bg-header: #262338;
+@border: #3f3a5a;
+@border-input: #4a4566;
+@border-light: #2f2b44;
+
+@text: #dcd6f7;
+@text-emphasis: #f4f1ff;
+@text-disabled: #6f6a8a;
+@selected-text: #f4f1ff;
+
+@accent: #f38ba8;
+@accent-dark: #f5a6bd;
+@accent-text: #141414;
+@accent2: #89dceb;
+@accent2-text: #141414;
+@hover: #3a2a3c;
+@border-hover: #a55c79;
+@pressed: #4a3047;
+@selected: #6b3e57;
+@selected-hover: #523449;
+
+@scrollbar-bg: #151320;
+@scrollbar-handle: #3f3a5a;
+@scrollbar-handle-hover: #99627f;
+
+/* Shape: set by the skin's "chrome" section. */
+@radius: 8px;
+@radius-small: 4px;
+@gaps: 6px;
+@focus-border: 2px;
+@font: "Noto Sans";
+@font-size: 10pt;
+@dock-title-padding: 5px 10px;
+@dock-title-size: 10pt;
+@panel-bg: none;

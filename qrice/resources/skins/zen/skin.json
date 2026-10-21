@@ -1,0 +1,11 @@
+{
+  "name": "Zen",
+  "category": "theme",
+  "license": "GPL-2.0",
+  "layout": "zen",
+  "chrome": {
+    "gaps": 0,
+    "radius": 8,
+    "map_background": "theme"
+  }
+}

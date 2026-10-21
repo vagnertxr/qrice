@@ -1,0 +1,537 @@
+/* QRice "rice" theme: rounded, gapped, palette-driven look for the stock
+   QGIS interface. Values come from variables.qss, the skin's variables
+   and its "chrome" section (substituted by theme.py). */
+
+QWidget {
+    font-family: @font;
+    font-size: @font-size;
+    color: @text;
+    selection-background-color: @selected;
+    selection-color: @selected-text;
+}
+
+QWidget:disabled {
+    color: @text-disabled;
+}
+
+/* --- Window and gaps between the panes -------------------------------- */
+
+QMainWindow {
+    background-color: @bg-window;
+}
+
+QMainWindow::separator {
+    background-color: @bg-window;
+    width: @gaps;
+    height: @gaps;
+}
+
+QMainWindow::separator:hover {
+    background-color: @accent;
+}
+
+/* --- Menu bar and menus ----------------------------------------------- */
+
+QMenuBar {
+    background-color: @bg-window;
+    padding: 2px 4px;
+}
+
+QMenuBar::item {
+    background: transparent;
+    padding: 4px 10px;
+    border-radius: @radius-small;
+}
+
+QMenuBar::item:selected {
+    background-color: @accent;
+    color: @accent-text;
+}
+
+QMenu {
+    background-color: @bg-panel;
+    border: 1px solid @border;
+    border-radius: @radius-small;
+    padding: 4px;
+}
+
+QMenu::item {
+    padding: 4px 24px 4px 28px;
+    border-radius: @radius-small;
+}
+
+QMenu::item:selected {
+    background-color: @hover;
+    color: @text-emphasis;
+}
+
+QMenu::separator {
+    height: 1px;
+    background: @border-light;
+    margin: 3px 6px;
+}
+
+/* --- Toolbars --------------------------------------------------------- */
+
+QToolBar {
+    background-color: @bg-window;
+    border: none;
+    spacing: 2px;
+    padding: 3px;
+}
+
+QToolBar::separator {
+    background: @border-light;
+    width: 1px;
+    height: 1px;
+    margin: 4px;
+}
+
+QToolButton {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: @radius-small;
+    padding: 3px;
+}
+
+QToolButton:hover {
+    background-color: @hover;
+    border-color: @border-hover;
+}
+
+QToolButton:pressed,
+QToolButton:checked {
+    background-color: @pressed;
+    border-color: @accent;
+}
+
+QToolButton[popupMode="1"] {
+    padding-right: 12px;
+}
+
+QToolButton::menu-button {
+    border: none;
+    width: 12px;
+}
+
+QToolButton::menu-arrow,
+QToolButton::menu-indicator {
+    image: url(@icons/arrow-down.svg);
+    width: 8px;
+    height: 8px;
+}
+
+QToolButton::menu-indicator {
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right;
+}
+
+/* --- Dock panes: rounded cards floating on the window colour ---------- */
+
+QDockWidget {
+    color: @text;
+    font-size: @dock-title-size;
+}
+
+QDockWidget::title {
+    background-color: @bg-header;
+    padding: @dock-title-padding;
+    text-align: left;
+    border-top-left-radius: @radius;
+    border-top-right-radius: @radius;
+}
+
+QDockWidget > QWidget {
+    background-color: @bg-panel;
+    border: 1px solid @border-light;
+    border-bottom-left-radius: @radius;
+    border-bottom-right-radius: @radius;
+}
+
+/* The skin's picture, only behind Layers (Browser cut it off). */
+QDockWidget#Layers > QWidget {
+    background-image: @panel-bg;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-origin: content;
+}
+
+/* Views inside panes let the pane (and its picture) show through. */
+QDockWidget QTreeView,
+QDockWidget QListView,
+QDockWidget QTreeWidget,
+QDockWidget QListWidget,
+QDockWidget QScrollArea,
+QDockWidget QScrollArea > QWidget > QWidget,
+QDockWidget QToolBar {
+    background: transparent;
+    border: none;
+}
+
+/* Focused pane: accent frame, like a tiling window manager. */
+QDockWidget[arcskinActive="true"] {
+    color: @accent;
+}
+
+QDockWidget[arcskinActive="true"]::title {
+    border: @focus-border solid @accent;
+    border-bottom: none;
+}
+
+QDockWidget[arcskinActive="true"] > QWidget {
+    border: @focus-border solid @accent;
+    border-top: none;
+}
+
+/* --- Tabs ------------------------------------------------------------- */
+
+QTabWidget::pane {
+    border: 1px solid @border-light;
+    border-radius: @radius-small;
+    background-color: @bg-panel;
+}
+
+QTabBar::tab {
+    background: transparent;
+    border: none;
+    border-radius: @radius-small;
+    padding: 4px 12px;
+    margin: 2px 1px;
+}
+
+QTabBar::tab:hover {
+    background-color: @hover;
+}
+
+QTabBar::tab:selected {
+    background-color: @accent;
+    color: @accent-text;
+}
+
+/* --- Buttons and inputs ----------------------------------------------- */
+
+QPushButton {
+    background-color: @bg-header;
+    border: 1px solid @border;
+    border-radius: @radius-small;
+    padding: 4px 14px;
+    min-height: 16px;
+}
+
+QPushButton:hover {
+    background-color: @hover;
+    border-color: @border-hover;
+}
+
+QPushButton:pressed {
+    background-color: @pressed;
+}
+
+QPushButton:default {
+    background-color: @accent;
+    border-color: @accent-dark;
+    color: @accent-text;
+}
+
+QLineEdit,
+QSpinBox,
+QDoubleSpinBox,
+QPlainTextEdit,
+QTextEdit,
+QComboBox {
+    background-color: @bg-header;
+    border: 1px solid @border-input;
+    border-radius: @radius-small;
+    padding: 2px 6px;
+}
+
+QLineEdit:hover,
+QSpinBox:hover,
+QDoubleSpinBox:hover,
+QPlainTextEdit:hover,
+QTextEdit:hover,
+QComboBox:hover {
+    border-color: @border-hover;
+}
+
+QLineEdit:focus,
+QSpinBox:focus,
+QDoubleSpinBox:focus,
+QPlainTextEdit:focus,
+QTextEdit:focus,
+QComboBox:focus,
+QComboBox:on {
+    border-color: @accent;
+}
+
+QComboBox {
+    min-height: 18px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: center right;
+    width: 18px;
+    border: none;
+}
+
+QComboBox::down-arrow {
+    image: url(@icons/arrow_down_small.svg);
+    width: 10px;
+    height: 10px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: @bg-panel;
+    border: 1px solid @border;
+    selection-background-color: @hover;
+    selection-color: @text-emphasis;
+    outline: 0;
+}
+
+QSpinBox::up-button,
+QDoubleSpinBox::up-button,
+QSpinBox::down-button,
+QDoubleSpinBox::down-button {
+    width: 16px;
+    border: none;
+    background: transparent;
+}
+
+QSpinBox::up-arrow,
+QDoubleSpinBox::up-arrow {
+    image: url(@icons/arrow_up_small.svg);
+    width: 9px;
+    height: 9px;
+}
+
+QSpinBox::down-arrow,
+QDoubleSpinBox::down-arrow {
+    image: url(@icons/arrow_down_small.svg);
+    width: 9px;
+    height: 9px;
+}
+
+/* --- Views ------------------------------------------------------------ */
+
+QTreeView,
+QListView,
+QTableView {
+    background-color: @bg-panel;
+    border: 1px solid @border-light;
+    border-radius: @radius-small;
+    alternate-background-color: @bg-header;
+}
+
+QTreeView::item,
+QListView::item {
+    border-radius: @radius-small;
+}
+
+QTreeView::item:hover,
+QListView::item:hover {
+    background-color: @hover;
+}
+
+QTreeView::item:selected,
+QListView::item:selected,
+QTableView::item:selected {
+    background-color: @selected;
+    color: @selected-text;
+}
+
+QTreeView::item:selected:hover,
+QListView::item:selected:hover {
+    background-color: @selected-hover;
+}
+
+QTreeView::branch:has-children:closed {
+    image: url(@icons/branch_closed.svg);
+}
+
+QTreeView::branch:has-children:open {
+    image: url(@icons/branch_open.svg);
+}
+
+QHeaderView::section {
+    background-color: @bg-header;
+    border: none;
+    border-right: 1px solid @border-light;
+    border-bottom: 1px solid @border-light;
+    padding: 3px 6px;
+}
+
+QTableCornerButton::section {
+    background-color: @bg-header;
+    border: none;
+}
+
+/* --- Check boxes and radio buttons ------------------------------------ */
+
+QCheckBox,
+QRadioButton {
+    spacing: 6px;
+}
+
+QCheckBox::indicator,
+QGroupBox::indicator,
+QTreeView::indicator,
+QListView::indicator,
+QTableView::indicator {
+    width: 13px;
+    height: 13px;
+    background-color: @bg-header;
+    border: 1px solid @border-input;
+    border-radius: 3px;
+}
+
+QCheckBox::indicator:hover,
+QTreeView::indicator:hover,
+QListView::indicator:hover {
+    border-color: @accent;
+}
+
+QCheckBox::indicator:checked,
+QGroupBox::indicator:checked,
+QTreeView::indicator:checked,
+QListView::indicator:checked,
+QTableView::indicator:checked {
+    image: url(@icons/check.svg);
+}
+
+QCheckBox::indicator:indeterminate,
+QTreeView::indicator:indeterminate,
+QListView::indicator:indeterminate {
+    image: url(@icons/check_partial.svg);
+}
+
+QRadioButton::indicator {
+    width: 13px;
+    height: 13px;
+    background-color: @bg-header;
+    border: 1px solid @border-input;
+    border-radius: 7px;
+}
+
+QRadioButton::indicator:checked {
+    image: url(@icons/radio_dot.svg);
+}
+
+/* --- Group boxes, sliders, progress, tooltips, scroll bars ------------ */
+
+QGroupBox {
+    border: 1px solid @border-light;
+    border-radius: @radius-small;
+    margin-top: 14px;
+    padding-top: 6px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 8px;
+    padding: 0 4px;
+    color: @accent;
+}
+
+QSlider::groove:horizontal {
+    height: 4px;
+    border-radius: 2px;
+    background: @border-light;
+}
+
+QSlider::sub-page:horizontal {
+    border-radius: 2px;
+    background: @accent;
+}
+
+QSlider::handle:horizontal {
+    width: 14px;
+    margin: -5px 0;
+    background: @accent;
+    border-radius: 7px;
+}
+
+QProgressBar {
+    background-color: @bg-header;
+    border: none;
+    border-radius: @radius-small;
+    text-align: center;
+    min-height: 12px;
+}
+
+QProgressBar::chunk {
+    background-color: @accent;
+    border-radius: @radius-small;
+}
+
+QToolTip {
+    background-color: @bg-header;
+    color: @text-emphasis;
+    border: 1px solid @accent;
+    border-radius: @radius-small;
+    padding: 4px;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 0;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 10px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: @scrollbar-handle;
+    min-height: 24px;
+    margin: 2px;
+    border-radius: 3px;
+}
+
+QScrollBar::handle:horizontal {
+    background: @scrollbar-handle;
+    min-width: 24px;
+    margin: 2px;
+    border-radius: 3px;
+}
+
+QScrollBar::handle:hover {
+    background: @scrollbar-handle-hover;
+}
+
+QScrollBar::add-line,
+QScrollBar::sub-line {
+    width: 0;
+    height: 0;
+}
+
+QScrollBar::add-page,
+QScrollBar::sub-page {
+    background: none;
+}
+
+/* --- Status bar ------------------------------------------------------- */
+
+QStatusBar {
+    background-color: @bg-window;
+    border: none;
+}
+
+QStatusBar::item {
+    border: none;
+}
+
+/* --- Message bar and the QRice progress box --------------------------- */
+
+QgsMessageBar {
+    border-radius: @radius-small;
+}
+
+QFrame#ArcSkinProgress {
+    background-color: @bg-panel;
+    border: 1px solid @accent;
+    border-radius: @radius;
+}

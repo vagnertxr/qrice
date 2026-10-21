@@ -1,0 +1,36 @@
+{
+  "name": "Rice Light",
+  "category": "theme",
+  "license": "GPL-2.0",
+  "variables": {
+    "bg-window": "#e6e9ef",
+    "bg-panel": "#eff1f5",
+    "bg-header": "#dce0e8",
+    "border": "#acb0be",
+    "border-input": "#9ca0b0",
+    "border-light": "#ccd0da",
+    "text": "#4c4f69",
+    "text-emphasis": "#303446",
+    "text-disabled": "#8c8fa1",
+    "selected-text": "#303446",
+    "accent": "#8839ef",
+    "accent-dark": "#6a1fd1",
+    "accent-text": "#ffffff",
+    "accent2": "#179299",
+    "accent2-text": "#ffffff",
+    "hover": "#e3d7f7",
+    "border-hover": "#b48ef5",
+    "pressed": "#d4c0f5",
+    "selected": "#cdb4f7",
+    "selected-hover": "#ddcaf8",
+    "scrollbar-bg": "#e6e9ef",
+    "scrollbar-handle": "#bcc0cc",
+    "scrollbar-handle-hover": "#8839ef"
+  },
+  "chrome": {
+    "gaps": 6,
+    "radius": 8,
+    "shine": true,
+    "glow": 12
+  }
+}

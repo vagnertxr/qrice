@@ -1,0 +1,27 @@
+{
+  "name": "Tux",
+  "category": "mascot",
+  "author": "Larry Ewing (lewing@isc.tamu.edu), made with The GIMP",
+  "license": "Permission to use and/or modify this image is granted provided you acknowledge Larry Ewing and The GIMP",
+  "credit_url": "https://commons.wikimedia.org/wiki/File:Tux.svg",
+  "palette": "auto",
+  "dark": true,
+  "variables": {
+    "accent": "#f5c211",
+    "accent-text": "#141414",
+    "accent2": "#e8a33d"
+  },
+  "panel_bg": {
+    "file": "tux.png",
+    "opacity": 0.2,
+    "height": 220
+  },
+  "chrome": {
+    "gaps": 6,
+    "radius": 8,
+    "statusbar": "polybar",
+    "map_background": "theme",
+    "glow": 18,
+    "shine": true
+  }
+}

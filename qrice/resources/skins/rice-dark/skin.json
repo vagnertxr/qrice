@@ -1,0 +1,14 @@
+{
+  "name": "Rice Dark",
+  "category": "theme",
+  "license": "GPL-2.0",
+  "chrome": {
+    "gaps": 6,
+    "radius": 8,
+    "map_background": "theme",
+    "glow": 26,
+    "glow_pulse": true,
+    "shine": true,
+    "map_frame": 2
+  }
+}

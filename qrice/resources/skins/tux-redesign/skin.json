@@ -1,0 +1,25 @@
+{
+  "name": "Tux Redesign",
+  "category": "mascot",
+  "author": "Michael Kolesidis",
+  "license": "CC BY-SA 4.0",
+  "credit_url": "https://commons.wikimedia.org/wiki/File:Tux_Redesign.svg",
+  "palette": "auto",
+  "dark": false,
+  "variables": {
+    "accent": "#e6820e",
+    "accent-text": "#141414"
+  },
+  "layout": "tiling",
+  "chrome": {
+    "gaps": 10,
+    "radius": 12,
+    "focus_border": 2,
+    "glow": 14
+  },
+  "panel_bg": {
+    "file": "tux-redesign.png",
+    "opacity": 0.2,
+    "height": 220
+  }
+}

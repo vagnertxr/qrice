@@ -1,0 +1,21 @@
+{
+  "name": "Wikipe-tan",
+  "category": "anime",
+  "author": "Kasuga",
+  "license": "CC BY-SA 3.0",
+  "credit_url": "https://commons.wikimedia.org/wiki/File:Wikipe-tan_full_length.png",
+  "palette": "auto",
+  "dark": false,
+  "panel_bg": {
+    "file": "wikipe-tan.png",
+    "opacity": 0.2,
+    "height": 220
+  },
+  "chrome": {
+    "gaps": 8,
+    "radius": 12,
+    "dock_titles": "minimal",
+    "glow": 14,
+    "shine": true
+  }
+}
