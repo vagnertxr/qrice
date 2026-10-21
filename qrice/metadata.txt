@@ -9,9 +9,9 @@ version=0.5.0
 author=Vagner Ferraz (QRice), EnviroSolutions (ArcSkin)
 email=vagner0598@gmail.com
 
-tracker=https://github.com/vagnertxr/arcskin/issues
-repository=https://github.com/vagnertxr/arcskin
-homepage=https://github.com/vagnertxr/arcskin
+tracker=https://github.com/vagnertxr/qrice/issues
+repository=https://github.com/vagnertxr/qrice
+homepage=https://github.com/vagnertxr/qrice
 
 changelog=
     0.5.0 - QRice: skins (theme, palette from a picture, mascot over the map, faded pane picture, window chrome, layout) with a Skin Manager; rice theme with gaps, rounded corners, focus frame and polybar status bar; tiling and zen layouts; country flag skins; bundled Tux, Tux Redesign and Wikipe-tan skins; the ArcGIS Pro look is now the Pro Light skin. Portuguese translation of the new strings.
