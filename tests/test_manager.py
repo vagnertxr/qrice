@@ -89,3 +89,20 @@ class Names(unittest.TestCase):
             self.manager.rename()
         ask.assert_not_called()
         self.assertEqual(skins.load_skin("tux").name, "Tux")
+
+
+class HandPickedColours(unittest.TestCase):
+
+    def test_derived_colours_follow_swatches_not_the_fixed_palette(self):
+        # A copy of Pro QGIS-tan (fixed greens) with reds picked by hand:
+        # pressed buttons, hover, selection etc. must not stay green.
+        data = dict(skins.load_skin("pro-qgis-tan").data)
+        data["variables"] = {"accent": "#e01b24", "accent2": "#ed333b",
+                             "bg-panel": "#ffecec", "border": "#ff6262"}
+        skin = skins.Skin("asuka", skins.BUILTIN / "pro-qgis-tan", "user",
+                          data)
+        variables = skin_variables(skin)
+        for name in ("pressed", "hover", "accent-dark", "selected-soft",
+                     "border-hover", "scrollbar-handle", "border-light"):
+            r, g, b = (int(variables[name][i:i + 2], 16) for i in (1, 3, 5))
+            self.assertGreaterEqual(r, g, f"{name} {variables[name]}")

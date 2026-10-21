@@ -238,3 +238,52 @@ def palette(colors, dark=None, base=None, accent=None, accent2=None):
 
 def palette_from_image(image, dark=None, **forced):
     return palette(colors_of(image), dark, **forced)
+
+
+SOURCES = ("accent", "accent2", "bg-window", "bg-panel", "bg-header",
+           "text", "text-emphasis", "selected", "border")
+
+
+def derived(variables):
+    """Colours that follow from the main ones (hover, pressed, text on the
+    accents, ...), computed the same way :func:`palette` does. Used when a
+    skin overrides main colours by hand, so the derived ones match them."""
+    def rgb(name, fallback):
+        value = str(variables.get(name, fallback))
+        return parse_hex(value) if value.startswith("#") and \
+            len(value) == 7 else parse_hex(fallback)
+
+    accent = rgb("accent", "#007ac2")
+    second = rgb("accent2", "#007ac2")
+    panel = rgb("bg-panel", "#ffffff")
+    header = rgb("bg-header", "#ebebeb")
+    border = rgb("border", "#b5b5b5")
+    emphasis = rgb("text-emphasis", "#2b2b2b")
+    selected = rgb("selected", hex_color(mix(accent, panel, 0.38)))
+    dark = luminance(panel) < 0.18
+    h, l, s = to_hls(accent)  # noqa: E741
+    accent_dark = from_hls(h, min(l + 0.12, 1) if dark else max(l - 0.12, 0),
+                           s)
+    on = ((255, 255, 255), (20, 20, 20))
+    hover = mix(accent, panel, 0.18)
+    result = {
+        "accent-dark": accent_dark,
+        "accent-text": max(on, key=lambda c: contrast(c, accent)),
+        "accent2-text": max(on, key=lambda c: contrast(c, second)),
+        "hover": hover,
+        "border-hover": mix(accent, panel, 0.6),
+        "pressed": mix(accent, panel, 0.3),
+        "selected-hover": mix(accent, panel, 0.26),
+        "selected-text": readable_on(emphasis, selected),
+        "scrollbar-handle-hover": mix(accent, border, 0.5),
+        "scrollbar-handle": border,
+        "scrollbar-bg": rgb("bg-window", "#f7f8f8"),
+        "border-input": border,
+        "border-light": mix(border, panel, 0.45),
+        # Names only the Pro theme uses.
+        "selected-soft": hover,
+        "selected-soft2": hover,
+        "bg-alt": header,
+        "table-selection": selected,
+    }
+    return {name: hex_color(value) for name, value in result.items()}

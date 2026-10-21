@@ -21,7 +21,9 @@ from .dialogs import WindowDresser
 from .icon_theme import apply_icon_theme
 from .mapview import frame_map
 from .mascot import apply_mascot
-from .palette import colors_of, hex_color, mix, palette, parse_hex
+from .palette import (
+    SOURCES, colors_of, derived, hex_color, mix, palette, parse_hex,
+)
 from .panel_bg import render_panel_bg
 from .panes import arrange_panes
 from .progress import Progress
@@ -59,6 +61,12 @@ def skin_variables(skin):
                           "table-selection": generated["selected"]})
         variables.update(generated)
     variables.update(own)
+    if any(name in own for name in SOURCES):
+        # Main colours picked by hand: hover, pressed, ... follow them
+        # (unless also picked), not the palette they replaced.
+        variables.update({name: value
+                          for name, value in derived(variables).items()
+                          if name not in own})
     _shine_variables(variables, own, skin.chrome.get("bars", "plain"))
     variables.update(chrome_variables(skin.chrome))
     return variables
