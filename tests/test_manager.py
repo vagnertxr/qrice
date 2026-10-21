@@ -102,7 +102,12 @@ class HandPickedColours(unittest.TestCase):
         skin = skins.Skin("asuka", skins.BUILTIN / "pro-qgis-tan", "user",
                           data)
         variables = skin_variables(skin)
+        data["variables"]["text"] = "#a51d2d"
+        skin = skins.Skin("asuka", skins.BUILTIN / "pro-qgis-tan", "user",
+                          data)
+        variables = skin_variables(skin)
         for name in ("pressed", "hover", "accent-dark", "selected-soft",
-                     "border-hover", "scrollbar-handle", "border-light"):
+                     "border-hover", "scrollbar-handle", "border-light",
+                     "text-emphasis", "text-disabled", "selected-text"):
             r, g, b = (int(variables[name][i:i + 2], 16) for i in (1, 3, 5))
             self.assertGreaterEqual(r, g, f"{name} {variables[name]}")

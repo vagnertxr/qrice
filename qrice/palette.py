@@ -241,7 +241,7 @@ def palette_from_image(image, dark=None, **forced):
 
 
 SOURCES = ("accent", "accent2", "bg-window", "bg-panel", "bg-header",
-           "text", "text-emphasis", "selected", "border")
+           "text", "selected", "border")
 
 
 def derived(variables):
@@ -258,15 +258,19 @@ def derived(variables):
     panel = rgb("bg-panel", "#ffffff")
     header = rgb("bg-header", "#ebebeb")
     border = rgb("border", "#b5b5b5")
-    emphasis = rgb("text-emphasis", "#2b2b2b")
+    text = rgb("text", "#4a4a4a")
     selected = rgb("selected", hex_color(mix(accent, panel, 0.38)))
     dark = luminance(panel) < 0.18
+    # Headings: the text colour pushed away from the background.
+    emphasis = mix((255, 255, 255) if dark else (0, 0, 0), text, 0.35)
     h, l, s = to_hls(accent)  # noqa: E741
     accent_dark = from_hls(h, min(l + 0.12, 1) if dark else max(l - 0.12, 0),
                            s)
     on = ((255, 255, 255), (20, 20, 20))
     hover = mix(accent, panel, 0.18)
     result = {
+        "text-emphasis": emphasis,
+        "text-disabled": mix(text, panel, 0.45),
         "accent-dark": accent_dark,
         "accent-text": max(on, key=lambda c: contrast(c, accent)),
         "accent2-text": max(on, key=lambda c: contrast(c, second)),
