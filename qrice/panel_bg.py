@@ -18,13 +18,12 @@ def load_picture(path, height):
 
     SVG files are drawn at that height, so they stay sharp (read at their
     nominal size, a 60 px crest would be blown up and blurry); other
-    pictures are scaled, never enlarged beyond their own size.
+    pictures are scaled (enlarged too, if asked: the user chose the size).
     """
     reader = QImageReader(str(path))
     size = reader.size()
     if size.isValid() and size.height() > 0:
-        is_svg = str(path).lower().endswith((".svg", ".svgz"))
-        target = int(height) if is_svg else min(int(height), size.height())
+        target = int(height)
         reader.setScaledSize(QSize(
             max(round(size.width() * target / size.height()), 1), target))
     image = reader.read()

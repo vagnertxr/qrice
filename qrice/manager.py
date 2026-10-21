@@ -206,6 +206,12 @@ class SkinManager(QDialog):
         form.addRow(self.panel_bg)
         self.panel_opacity = self._slider(2, 60)
         form.addRow(tr("Pane picture opacity"), self.panel_opacity)
+        self.panel_height = QSpinBox(minimum=40, maximum=1200, singleStep=20,
+                                     suffix=" px")
+        self.panel_height.setToolTip(tr("Height of the picture behind the "
+                                        "Layers pane"))
+        self.panel_height.valueChanged.connect(self._edited)
+        form.addRow(tr("Pane picture size"), self.panel_height)
         self.mascot = QCheckBox(tr("Also over the map (mascot; covers "
                                    "part of the data)"))
         self.mascot.toggled.connect(self._edited)
@@ -368,6 +374,7 @@ class SkinManager(QDialog):
             self.mirror.setChecked(bool(mascot.get("mirror")))
             self.panel_bg.setChecked(bool(panel))
             self.panel_opacity.setValue(round(panel.get("opacity", 0.1) * 100))
+            self.panel_height.setValue(int(panel.get("height", 200)))
             self.layout_combo.setCurrentIndex(
                 max(self.layout_combo.findData(skin.layout), 0))
             chrome = dict(CHROME_DEFAULTS)
@@ -433,6 +440,7 @@ class SkinManager(QDialog):
             if picture:
                 panel["file"] = picture
             panel["opacity"] = self.panel_opacity.value() / 100
+            panel["height"] = self.panel_height.value()
         else:
             data.pop("panel_bg", None)
         data["layout"] = self.layout_combo.currentData()

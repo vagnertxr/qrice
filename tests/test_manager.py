@@ -111,3 +111,30 @@ class HandPickedColours(unittest.TestCase):
                      "text-emphasis", "text-disabled", "selected-text"):
             r, g, b = (int(variables[name][i:i + 2], 16) for i in (1, 3, 5))
             self.assertGreaterEqual(r, g, f"{name} {variables[name]}")
+
+
+class PanePictureSize(unittest.TestCase):
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        patcher = mock.patch.object(skins, "user_dir",
+                                    return_value=Path(self.tmp.name))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.addCleanup(self.tmp.cleanup)
+
+    def test_size_is_saved_and_the_picture_rendered_at_it(self):
+        from qgis.PyQt.QtGui import QImage
+
+        from qrice.panel_bg import render_panel_bg
+
+        copy = skins.duplicate_skin(skins.load_skin("tux"), "Big Tux")
+        manager = SkinManager(FakePlugin())
+        manager.skin = copy
+        manager._load_editor()
+        manager.panel_height.setValue(1100)  # bigger than tux.png (900)
+        panel = skins.load_skin(copy.id).section("panel_bg")
+        self.assertEqual(panel["height"], 1100)
+        out = Path(self.tmp.name) / "panel.png"
+        render_panel_bg(panel["file"], "#000000", 0.2, panel["height"], out)
+        self.assertEqual(QImage(str(out)).height(), 1100)

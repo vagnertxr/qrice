@@ -316,6 +316,14 @@
       <translation>Krycie obrazu paneli</translation>
     </message>
     <message>
+      <source>Height of the picture behind the Layers pane</source>
+      <translation>Wysokość obrazu za panelem Warstwy</translation>
+    </message>
+    <message>
+      <source>Pane picture size</source>
+      <translation>Rozmiar obrazu panelu</translation>
+    </message>
+    <message>
       <source>Also over the map (mascot; covers part of the data)</source>
       <translation>Również na mapie (maskotka; zasłania część danych)</translation>
     </message>

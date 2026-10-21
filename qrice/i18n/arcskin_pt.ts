@@ -316,6 +316,14 @@
       <translation>Opacidade da imagem dos painéis</translation>
     </message>
     <message>
+      <source>Height of the picture behind the Layers pane</source>
+      <translation>Altura da imagem atrás do painel Camadas</translation>
+    </message>
+    <message>
+      <source>Pane picture size</source>
+      <translation>Tamanho da imagem</translation>
+    </message>
+    <message>
       <source>Also over the map (mascot; covers part of the data)</source>
       <translation>Também sobre o mapa (mascote; cobre parte dos dados)</translation>
     </message>
