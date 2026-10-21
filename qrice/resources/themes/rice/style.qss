@@ -16,7 +16,10 @@ QWidget:disabled {
 
 /* --- Window and gaps between the panes -------------------------------- */
 
-QMainWindow {
+QMainWindow,
+QDialog,
+QMessageBox,
+QWizard {
     background-color: @bg-window;
 }
 

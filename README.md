@@ -10,6 +10,8 @@ restores QGIS exactly as it was.
 QRice is a fork of [ArcSkin](https://github.com/envirosolutionspl/arcskin) by
 EnviroSolutions; ArcSkin's ArcGIS Pro look lives on as the *Pro Light* skin.
 
+![QGIS with the Tux skin: dark theme in Tux's black and yellow, Tux behind the Layers pane, polybar status bar and a glow around the focused pane](docs/images/qrice-tux.jpg)
+
 ## Skins
 
 | Skin | What it is |
@@ -20,16 +22,48 @@ EnviroSolutions; ArcSkin's ArcGIS Pro look lives on as the *Pro Light* skin.
 | Brasil, Estados Unidos, China, Cuba, Palestina (and any other country) | Flag behind the panes, palette and bars in the flag's colours |
 | Rice Dark, Rice Light, Zen | Colours only; Zen hides everything but the map |
 | Pro Light (ArcSkin) | The ArcGIS Pro-style ribbon, panes, icons and symbology |
-| Pro Dark, Pro QGIS-tan | The Pro layout riced: dark palette, gaps, rounded corners, glow and shine (any skin with `"layout": "pro"` takes the chrome settings) |
+| Pro Dark | The Pro layout riced: dark palette, gaps, rounded corners, glow and shine |
+| Pro QGIS-tan | The Pro layout in soft QGIS greens, with QGIS-tan behind Contents |
 
 Every bundled picture has a free licence; see
 [CREDITS.md](qrice/resources/skins/CREDITS.md).
 
-**Your own skin:** *Plugins → QRice → Skin Manager… → New from picture…* turns any
-picture into a skin (mascot, pane picture and a palette from its colours). *New flag
-skin…* does the same for a country. Edit colours, mascot and window chrome in the
-manager's tabs; the active skin updates live. Skins can be exported and imported as
-ZIP files. Your skins live in `<QGIS profile>/qrice/skins/`.
+Switch skins with *Plugins → QRice → Skins*, or turn the skin off and on with
+*Plugins → QRice → QRice skin* (or its toolbar button).
+
+## Skin Manager
+
+*Plugins → QRice → Skin Manager…* shows every skin as a tile with its colours and
+picture. Double-click a tile, or select it and click **Apply**.
+
+![Skin Manager with the Tux skin selected: its colours on the Colours tab](docs/images/qrice-manager.png)
+
+Built-in skins are read-only. To change one, select it and click **Duplicate**: the
+copy (here *My Tux*) can be edited, and while it is the active skin every change
+shows at once.
+
+- **Colours:** *Colours from the picture* builds the palette from the skin's
+  picture; *Theme* forces dark or light. Click a swatch (accent, second accent,
+  window, panes, headers, text, selection, borders) to pick a colour yourself; the
+  **×** next to it goes back to the generated one.
+- **Picture:** **Choose…** another picture, e.g. another character for a copy of
+  *Pro QGIS-tan*. It shows faded behind the Layers pane; *Also over the map* turns
+  it into a mascot in a corner of the map (it covers part of the data, so no
+  bundled skin does that).
+
+![Picture tab of My Tux: Tux faded behind the panes, mascot over the map switched off](docs/images/qrice-manager-picture.png)
+
+- **Window:** layout, gaps, corner radius, glow around the focused pane (optionally
+  pulsing), frame around the map, font, pane titles, menu bar, toolbars, polybar
+  status bar, map background, bar colours, glossy bars and window opacity (see
+  the table below).
+
+![Window tab of My Tux: gaps, corners, glow, polybar status bar, themed map background and glossy bars](docs/images/qrice-manager-window.png)
+
+**New from picture…** turns any picture into a skin, with a palette from its
+colours; **New flag skin…** does the same for a country. **Export…** and
+**Import…** share skins as ZIP files; **Open folder** shows a skin's files. Your
+skins live in `<QGIS profile>/qrice/skins/`.
 
 ### Window chrome and layouts
 
