@@ -30,7 +30,7 @@ Every bundled picture has a free licence; see
 
 Switch skins with *Plugins → QRice → Skins*. The QRice toolbar button (a rice bowl
 shaped like a Q) opens the Skin Manager; turn the skin off and on with its
-**Skin on** box or *Plugins → QRice → QRice skin*.
+**Skin on** box.
 
 ## Skin Manager
 
@@ -88,7 +88,8 @@ skins live in `<QGIS profile>/qrice/skins/`.
 | Font, font size, window opacity | any installed font; opacity needs a compositor |
 
 Shortcuts while a skin is on: **Ctrl+Alt+M** shows or hides a hidden menu bar,
-**Ctrl+Alt+Z** brings the panes back in the zen layout.
+**Ctrl+Alt+Z** brings the panes back in the zen layout. When zen is applied, a box
+recalls these shortcuts and how to leave zen (it can be told not to show again).
 
 ### skin.json
 
@@ -135,7 +136,7 @@ Or:
 
 The active skin (Tux by default) is applied as soon as the plugin is loaded; switch
 it with *Plugins → QRice → Skins* or the toolbar button (Skin Manager), off and
-on with *Plugins → QRice → QRice skin* or the manager's **Skin on** box.
+on with the manager's **Skin on** box.
 
 ## Good to know
 

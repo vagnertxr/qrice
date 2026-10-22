@@ -28,6 +28,18 @@
       <translation type="unfinished" />
     </message>
     <message>
+      <source>&lt;b&gt;Zen layout: only the map.&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Ctrl+Alt+Z&lt;/b&gt; shows or hides the panes and toolbars.&lt;br&gt;&lt;b&gt;Ctrl+Alt+M&lt;/b&gt; shows or hides the menu bar.&lt;br&gt;&lt;br&gt;To leave Zen, open the menu bar (Ctrl+Alt+M), then &lt;i&gt;Plugins → QRice → Skins&lt;/i&gt; to pick another skin, or &lt;i&gt;Plugins → QRice → Skin Manager…&lt;/i&gt; and untick &lt;i&gt;Skin on&lt;/i&gt;.</source>
+      <translation>&lt;b&gt;Layout Zen: só o mapa.&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Ctrl+Alt+Z&lt;/b&gt; mostra ou esconde os painéis e as barras de ferramentas.&lt;br&gt;&lt;b&gt;Ctrl+Alt+M&lt;/b&gt; mostra ou esconde a barra de menus.&lt;br&gt;&lt;br&gt;Para sair do Zen, abra a barra de menus (Ctrl+Alt+M) e vá em &lt;i&gt;Complementos → QRice → Skins&lt;/i&gt; para escolher outra skin, ou em &lt;i&gt;Complementos → QRice → Gerenciador de skins…&lt;/i&gt; e desmarque &lt;i&gt;Skin ligada&lt;/i&gt;.</translation>
+    </message>
+    <message>
+      <source>QRice: Zen layout</source>
+      <translation>QRice: layout Zen</translation>
+    </message>
+    <message>
+      <source>Don't show this again</source>
+      <translation>Não mostrar de novo</translation>
+    </message>
+    <message>
       <source>List By Drawing Order</source>
       <translation type="unfinished" />
     </message>

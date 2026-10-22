@@ -28,6 +28,18 @@
       <translation>Mapa podkładowa „{}” jest niedostępna.</translation>
     </message>
     <message>
+      <source>&lt;b&gt;Zen layout: only the map.&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Ctrl+Alt+Z&lt;/b&gt; shows or hides the panes and toolbars.&lt;br&gt;&lt;b&gt;Ctrl+Alt+M&lt;/b&gt; shows or hides the menu bar.&lt;br&gt;&lt;br&gt;To leave Zen, open the menu bar (Ctrl+Alt+M), then &lt;i&gt;Plugins → QRice → Skins&lt;/i&gt; to pick another skin, or &lt;i&gt;Plugins → QRice → Skin Manager…&lt;/i&gt; and untick &lt;i&gt;Skin on&lt;/i&gt;.</source>
+      <translation>&lt;b&gt;Układ Zen: tylko mapa.&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Ctrl+Alt+Z&lt;/b&gt; pokazuje lub ukrywa panele i paski narzędzi.&lt;br&gt;&lt;b&gt;Ctrl+Alt+M&lt;/b&gt; pokazuje lub ukrywa pasek menu.&lt;br&gt;&lt;br&gt;Aby wyjść z Zen, otwórz pasek menu (Ctrl+Alt+M), a następnie &lt;i&gt;Wtyczki → QRice → Skórki&lt;/i&gt;, aby wybrać inną skórkę, lub &lt;i&gt;Wtyczki → QRice → Menedżer skórek…&lt;/i&gt; i odznacz &lt;i&gt;Skórka włączona&lt;/i&gt;.</translation>
+    </message>
+    <message>
+      <source>QRice: Zen layout</source>
+      <translation>QRice: układ Zen</translation>
+    </message>
+    <message>
+      <source>Don't show this again</source>
+      <translation>Nie pokazuj ponownie</translation>
+    </message>
+    <message>
       <source>List By Drawing Order</source>
       <translation>Lista według kolejności wyświetlania</translation>
     </message>

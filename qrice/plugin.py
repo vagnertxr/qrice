@@ -157,16 +157,16 @@ class QRicePlugin:
         win = self.iface.mainWindow()
         self.action = QAction(icon, tr("QRice skin"), win, checkable=True)
         self.action.toggled.connect(self.set_enabled)
-        self.iface.addPluginToMenu(MENU_NAME, self.action)
+        # Not in the menu: the manager's "Skin on" box (and the Pro
+        # ribbon's Project menu) switch the skin on and off.
         self.manager_action = QAction(icon, tr("Skin Manager…"), win)
         self.manager_action.triggered.connect(self.show_manager)
         self.iface.addPluginToMenu(MENU_NAME, self.manager_action)
         self.skins_menu = QMenu(tr("Skins"), win)
         self.skins_menu.aboutToShow.connect(self._fill_skins_menu)
         self.iface.addPluginToMenu(MENU_NAME, self.skins_menu.menuAction())
-        # The toolbar button opens the manager; switching the skin off is in
-        # the menu and the manager (a click there used to undo the whole
-        # skin, e.g. from the Pro ribbon's Add-ins tab).
+        # The toolbar button opens the manager (as a switch, a click there
+        # undid the whole skin, e.g. from the Pro ribbon's Add-ins tab).
         self.iface.addToolBarIcon(self.manager_action)
         # The skin is on whenever the plugin is loaded. At QGIS start-up
         # wait until all plugins are loaded so their toolbars reach the
@@ -190,7 +190,7 @@ class QRicePlugin:
                 self.manager.close()
                 self.manager.deleteLater()
             self.iface.removeToolBarIcon(self.manager_action)
-            for action in (self.action, self.manager_action,
+            for action in (self.manager_action,
                            self.skins_menu.menuAction()):
                 self.iface.removePluginMenu(MENU_NAME, action)
             if self.translator:

@@ -28,8 +28,10 @@ window state the plugin saves; everything else goes through ``Changes``.
 from qgis.PyQt import sip
 from qgis.PyQt.QtCore import QEasingCurve, QObject, Qt, QVariantAnimation
 from qgis.PyQt.QtGui import QColor, QFontDatabase, QKeySequence
+from qgis.core import QgsSettings
 from qgis.PyQt.QtWidgets import (
-    QApplication, QDockWidget, QGraphicsDropShadowEffect, QToolBar, QWidget,
+    QApplication, QCheckBox, QDockWidget, QGraphicsDropShadowEffect,
+    QMessageBox, QToolBar, QWidget,
 )
 
 try:  # Qt 6
@@ -38,6 +40,7 @@ except ImportError:  # Qt 5
     from qgis.PyQt.QtWidgets import QShortcut
 
 from .panes import ActivePane
+from .util import tr
 
 LEFT = Qt.DockWidgetArea.LeftDockWidgetArea
 DEFAULTS = {"gaps": 6, "radius": 8, "focus_border": 2, "font": None,
@@ -416,6 +419,41 @@ class FocusGlow(QObject):
         self.deleteLater()
 
 
+ZEN_HELP_KEY = "qrice/zen_help_hidden"
+
+
+def zen_help_text():
+    return tr(
+        "<b>Zen layout: only the map.</b><br><br>"
+        "<b>Ctrl+Alt+Z</b> shows or hides the panes and toolbars.<br>"
+        "<b>Ctrl+Alt+M</b> shows or hides the menu bar.<br><br>"
+        "To leave Zen, open the menu bar (Ctrl+Alt+M), then "
+        "<i>Plugins → QRice → Skins</i> to pick another skin, or "
+        "<i>Plugins → QRice → Skin Manager…</i> and untick "
+        "<i>Skin on</i>.")
+
+
+def zen_help(win, changes):
+    """Non-blocking box with the zen shortcuts and how to leave zen, until
+    the user ticks "Don't show this again"."""
+    if QgsSettings().value(ZEN_HELP_KEY, False, type=bool):
+        return None
+    box = QMessageBox(QMessageBox.Icon.Information, tr("QRice: Zen layout"),
+                      zen_help_text(), QMessageBox.StandardButton.Ok, win)
+    box.setTextFormat(Qt.TextFormat.RichText)
+    box.setModal(False)
+    box.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
+    # Parented to the box: setCheckBox() does not take ownership, and a
+    # parentless box would be deleted with its Python wrapper (crash).
+    again = QCheckBox(tr("Don't show this again"), box)
+    again.toggled.connect(
+        lambda on: QgsSettings().setValue(ZEN_HELP_KEY, on))
+    box.setCheckBox(again)
+    box.show()
+    changes.add(lambda: sip.isdeleted(box) or box.close())
+    return box
+
+
 def apply_chrome(iface, changes, chrome, layout, variables=None):
     """Window-level parts of the chrome and the layout preset.
 
@@ -452,3 +490,4 @@ def apply_chrome(iface, changes, chrome, layout, variables=None):
                   bool(c["glow_pulse"]))
     if layout == "zen":
         Zen(win, changes)
+        zen_help(win, changes)
