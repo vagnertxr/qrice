@@ -1,1 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect x="4" y="4" width="56" height="56" rx="13" fill="#8cb63c"/><path d="M17 4h30a13 13 0 0 1 13 13v21L38 60H17A13 13 0 0 1 4 47V17A13 13 0 0 1 17 4z" fill="#0b78c4"/><path d="M60 38L38 60l3-19z" fill="#7fc1ec"/><g transform="translate(-5 -5)"><circle cx="32" cy="32" r="17" fill="#ffffff"/><circle cx="32" cy="32" r="13" fill="#007ac2"/><g fill="none" stroke="#ffffff" stroke-width="2.4"><ellipse cx="32" cy="32" rx="5.5" ry="13"/><path d="M19 32h26M21 25h22M21 39h22"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- QRice: a rice bowl whose rim and rice make a "Q"; the chopsticks
+       are the Q's tail. QGIS green and yellow. -->
+  <defs>
+    <linearGradient id="bowl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6fb33d"/>
+      <stop offset="1" stop-color="#3f7a22"/>
+    </linearGradient>
+  </defs>
+  <!-- rice mound -->
+  <path d="M10 33 C10 20 20 12 31 12 C42 12 52 20 52 33 Z" fill="#ffffff"
+        stroke="#3f7a22" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="#e9eedc">
+    <ellipse cx="22" cy="24" rx="3" ry="1.8" transform="rotate(-25 22 24)"/>
+    <ellipse cx="31" cy="19" rx="3" ry="1.8" transform="rotate(10 31 19)"/>
+    <ellipse cx="40" cy="25" rx="3" ry="1.8" transform="rotate(30 40 25)"/>
+    <ellipse cx="29" cy="28" rx="3" ry="1.8" transform="rotate(-10 29 28)"/>
+  </g>
+  <!-- bowl: the round body of the Q -->
+  <path d="M6 32 H56 C56 46 45 56 31 56 C17 56 6 46 6 32 Z"
+        fill="url(#bowl)" stroke="#2f5e19" stroke-width="2.5"
+        stroke-linejoin="round"/>
+  <path d="M12 38 C16 46 23 50 31 50" fill="none" stroke="#9fd06b"
+        stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  <!-- chopsticks: the tail of the Q -->
+  <g stroke-linecap="round">
+    <path d="M36 40 L60 61" stroke="#2f5e19" stroke-width="7"/>
+    <path d="M36 40 L60 61" stroke="#eeee33" stroke-width="4"/>
+    <path d="M42 36 L62 52" stroke="#2f5e19" stroke-width="6"/>
+    <path d="M42 36 L62 52" stroke="#d9d92a" stroke-width="3"/>
+  </g>
+</svg>

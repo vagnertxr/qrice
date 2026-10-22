@@ -96,7 +96,19 @@ class SkinManager(QDialog):
         for name in skins.CATEGORIES:
             self.category.addItem(name.title(), name)
         self.category.currentIndexChanged.connect(self.refresh)
-        left.addWidget(self.category)
+        top = QHBoxLayout()
+        top.addWidget(self.category, 1)
+        # On/off switch of the plugin's skin, kept in step with its action.
+        self.enabled = QCheckBox(tr("Skin on"))
+        action = getattr(plugin, "action", None)
+        if action is not None:
+            self.enabled.setChecked(action.isChecked())
+            self.enabled.toggled.connect(action.setChecked)
+            action.toggled.connect(self._skin_toggled)
+        else:
+            self.enabled.hide()
+        top.addWidget(self.enabled)
+        left.addLayout(top)
         self.list = QListWidget(viewMode=QListWidget.ViewMode.IconMode,
                                 iconSize=THUMB, movement=QListWidget.Movement.Static,
                                 resizeMode=QListWidget.ResizeMode.Adjust,
@@ -319,6 +331,11 @@ class SkinManager(QDialog):
             form.addRow(check)
             self.checks[key] = check
         return page
+
+    def _skin_toggled(self, on):
+        self.enabled.blockSignals(True)
+        self.enabled.setChecked(on)
+        self.enabled.blockSignals(False)
 
     # --- list ----------------------------------------------------------
 

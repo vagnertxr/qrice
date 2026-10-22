@@ -280,6 +280,10 @@
       <translation>Todas as skins</translation>
     </message>
     <message>
+      <source>Skin on</source>
+      <translation>Skin ligada</translation>
+    </message>
+    <message>
       <source>Apply</source>
       <translation>Aplicar</translation>
     </message>

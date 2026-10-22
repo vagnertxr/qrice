@@ -28,8 +28,9 @@ EnviroSolutions; ArcSkin's ArcGIS Pro look lives on as the *Pro Light* skin.
 Every bundled picture has a free licence; see
 [CREDITS.md](qrice/resources/skins/CREDITS.md).
 
-Switch skins with *Plugins → QRice → Skins*, or turn the skin off and on with
-*Plugins → QRice → QRice skin* (or its toolbar button).
+Switch skins with *Plugins → QRice → Skins*. The QRice toolbar button (a rice bowl
+shaped like a Q) opens the Skin Manager; turn the skin off and on with its
+**Skin on** box or *Plugins → QRice → QRice skin*.
 
 ## Skin Manager
 
@@ -133,8 +134,8 @@ Or:
    choose the file and click *Install Plugin*.
 
 The active skin (Tux by default) is applied as soon as the plugin is loaded; switch
-it with *Plugins → QRice → Skins*, off and on with *Plugins → QRice → QRice skin*
-or the toolbar button.
+it with *Plugins → QRice → Skins* or the toolbar button (Skin Manager), off and
+on with *Plugins → QRice → QRice skin* or the manager's **Skin on** box.
 
 ## Good to know
 

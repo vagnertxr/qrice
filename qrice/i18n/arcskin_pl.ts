@@ -280,6 +280,10 @@
       <translation>Wszystkie skórki</translation>
     </message>
     <message>
+      <source>Skin on</source>
+      <translation>Skórka włączona</translation>
+    </message>
+    <message>
       <source>Apply</source>
       <translation>Zastosuj</translation>
     </message>

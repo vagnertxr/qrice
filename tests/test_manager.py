@@ -195,3 +195,20 @@ class PanePicturePosition(unittest.TestCase):
         self.assertEqual(picture.height(), 260)  # 200 + 60 below it
         # The added strip at the bottom is transparent.
         self.assertEqual(picture.pixelColor(5, 255).alpha(), 0)
+
+
+class OnOffSwitch(unittest.TestCase):
+    """The toolbar button opens the manager, so the manager switches the
+    skin on and off, in step with the plugin's action."""
+
+    def test_checkbox_and_plugin_action_follow_each_other(self):
+        from qgis.PyQt.QtGui import QAction
+
+        plugin = FakePlugin()
+        plugin.action = QAction("QRice skin", checkable=True, checked=True)
+        manager = SkinManager(plugin)
+        self.assertTrue(manager.enabled.isChecked())
+        manager.enabled.setChecked(False)
+        self.assertFalse(plugin.action.isChecked())
+        plugin.action.setChecked(True)
+        self.assertTrue(manager.enabled.isChecked())
