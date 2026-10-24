@@ -1,0 +1,22 @@
+{
+  "name": "Canada",
+  "category": "flag",
+  "flag": "ca",
+  "theme": "rice",
+  "palette": "auto",
+  "panel_bg": {
+    "opacity": 0.22,
+    "height": 140
+  },
+  "chrome": {
+    "bars": "accent",
+    "shine": true,
+    "glow": 18
+  },
+  "credit_url": "https://github.com/lipis/flag-icons",
+  "license": "MIT (flag-icons); flags: public domain",
+  "colors": {
+    "accent": "#d52b1e",
+    "accent2": "#ffffff"
+  }
+}

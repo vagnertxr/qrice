@@ -19,7 +19,8 @@ EnviroSolutions; ArcSkin's ArcGIS Pro look lives on as the *Pro Light* skin.
 | Tux, Tux Redesign | Linux's penguin; dark theme with polybar / light theme with tiling layout |
 | QGIS-tan | Wikipe-tan's green sister: map pins in her hair, the QGIS logo on her apron |
 | Wikipe-tan | Wikipedia's mascot by Kasuga |
-| Brasil, Estados Unidos, China, Cuba, Palestina (and any other country) | Flag behind the panes, palette and bars in the flag's colours |
+| Argentina, Brazil, Canada, China, Colombia, Cuba, India, Jamaica, Mexico, Palestine, Paraguay, United States (and any other country with *New flag skin…*) | Flag behind the panes, palette and bars in the flag's colours |
+| Arch Linux | Arch blue on a dark theme, the Arch logo behind Layers, tiling layout, polybar status bar |
 | Rice Dark, Rice Light, Zen | Colours only; Zen hides everything but the map |
 | Pro Light (ArcSkin) | The ArcGIS Pro-style ribbon, panes, icons and symbology |
 | Pro Dark | The Pro layout riced: dark palette, gaps, rounded corners, glow and shine |

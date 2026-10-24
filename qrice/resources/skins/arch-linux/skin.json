@@ -1,0 +1,32 @@
+{
+  "name": "Arch Linux",
+  "category": "mascot",
+  "author": "Judd Vinet, Aaron Griffin and Levente Polyák (Arch Linux logo)",
+  "license": "GPL (logo artwork); the Arch Linux name and logo are trademarks of the Arch Linux project",
+  "credit_url": "https://commons.wikimedia.org/wiki/File:Arch_Linux_%22Crystal%22_icon.svg",
+  "colors": {
+    "base": "#0c1117",
+    "accent": "#1793d1",
+    "accent2": "#33ccff"
+  },
+  "dark": true,
+  "panel_bg": {
+    "file": "arch-linux.svg",
+    "opacity": 0.18,
+    "height": 200,
+    "margin_x": 16,
+    "margin_y": 16
+  },
+  "layout": "tiling",
+  "chrome": {
+    "gaps": 8,
+    "radius": 4,
+    "focus_border": 2,
+    "glow": 16,
+    "font": "JetBrains Mono",
+    "statusbar": "polybar",
+    "dock_titles": "minimal",
+    "map_background": "theme",
+    "shine": false
+  }
+}

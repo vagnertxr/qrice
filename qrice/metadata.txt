@@ -5,7 +5,7 @@ qgisMaximumVersion=4.99
 supportsQt6=True
 description=Skin manager for QGIS: rice themes, mascots over the map, palettes from pictures, flags and tiling/zen window layouts. One click on, one click off.
 about=QRice turns QGIS into something you can rice. A skin gives QGIS a rounded, gapped theme with colours you pick or take from a picture (pywal style), a mascot in a corner of the map (it lets clicks through and never appears in exports or layouts), a faded picture behind the panes, a focus frame on the active pane, a polybar-style status bar, and window layouts: tiling, zen (map only) or the ArcGIS Pro-style ribbon and panes inherited from ArcSkin by EnviroSolutions. Ships with freely licensed mascots (Tux, Tux Redesign, Wikipe-tan) and every country flag; make your own skin from any picture in the Skin Manager. Switching the skin off restores QGIS exactly as it was. Based on ArcSkin (GPL-2.0) by EnviroSolutions; not affiliated with or endorsed by Esri.
-version=0.5.1
+version=0.5.2
 author=Vagner Ferraz (QRice), EnviroSolutions (ArcSkin)
 email=vagner0598@gmail.com
 
@@ -14,6 +14,7 @@ repository=https://github.com/vagnertxr/qrice
 homepage=https://github.com/vagnertxr/qrice
 
 changelog=
+    0.5.2 - New icon (a rice bowl shaped like a Q). The toolbar button opens the Skin Manager instead of switching the skin off (also on the Pro ribbon's Add-ins tab); the manager has a 'Skin on' box and the Plugins menu only Skin Manager and Skins. The zen layout shows its shortcuts and how to leave it. New skins: Arch Linux and the flags of Argentina, Canada, Colombia, India, Jamaica, Mexico and Paraguay; flag skins are named in English (Brazil, United States, Palestine).
     0.5.1 - Skin Manager: position (corner) and distance from the edge for the picture behind the Layers pane, so a character cut off at the bottom can be lifted. README: installation from the Releases tab.
     0.5.0 - QRice: skins (theme, palette from a picture, mascot over the map, faded pane picture, window chrome, layout) with a Skin Manager; rice theme with gaps, rounded corners, focus frame and polybar status bar; tiling and zen layouts; country flag skins; bundled Tux, Tux Redesign and Wikipe-tan skins; the ArcGIS Pro look is now the Pro Light skin. Portuguese translation of the new strings.
     0.4.5 - Switching the look off after an attribute table had been opened and closed no longer ends in a Python error with QGIS only half restored; a step that fails while restoring no longer stops the others.

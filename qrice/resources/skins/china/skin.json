@@ -1,7 +1,7 @@
 {
   "name": "China",
-  "flag": "cn",
   "category": "flag",
+  "flag": "cn",
   "theme": "rice",
   "palette": "auto",
   "panel_bg": {
