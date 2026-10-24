@@ -4,8 +4,8 @@
 its colours (picked, or taken from a picture, pywal style), a faded picture behind
 the panes, the window chrome (gaps, rounded corners, a glowing focus frame, glossy
 bars, a polybar-style status bar) and a layout (tiling, zen or the
-ArcGIS Pro-style ribbon). One click on, one click off: switching the skin off
-restores QGIS exactly as it was.
+ArcGIS Pro-style ribbon). Switching the skin off restores QGIS exactly as it
+was.
 
 QRice is a fork of [ArcSkin](https://github.com/envirosolutionspl/arcskin) by
 EnviroSolutions; ArcSkin's ArcGIS Pro look lives on as the *Pro Light* skin.
@@ -100,7 +100,9 @@ A skin is a folder with `skin.json` and its pictures:
 {"name": "Tux", "category": "mascot", "author": "Larry Ewing", "license": "…",
  "palette": "auto", "dark": true,
  "variables": {"accent": "#f5c211"},
- "panel_bg": {"file": "tux.png", "opacity": 0.2, "height": 220},
+ "panel_bg": {"file": "tux.png", "opacity": 0.2, "height": 220,
+              "align_x": "right", "align_y": "bottom",
+              "margin_x": 0, "margin_y": 40},
  "layout": "none",
  "chrome": {"gaps": 6, "radius": 8, "statusbar": "polybar",
             "map_background": "theme", "glow": 18, "glow_pulse": true,
@@ -128,12 +130,14 @@ skin folders in `dev-skins/` (git-ignored, not packaged) and start QGIS with
 
 ## Installation
 
-Download the latest .zip from the Releases tab
-
-Or:
-1. Build the ZIP with `python scripts/package.py` (`dist/qrice-<version>.zip`).
+1. Download `qrice-<version>.zip` from the
+   [latest release](https://github.com/vagnertxr/qrice/releases/latest). Not the
+   *Source code* archives GitHub adds to every release: they hold the whole
+   repository, not the plugin, and QGIS cannot install them.
 2. In QGIS open *Plugins → Manage and Install Plugins… → Install from ZIP*,
    choose the file and click *Install Plugin*.
+
+To build the ZIP yourself: `python scripts/package.py` (`dist/qrice-<version>.zip`).
 
 The active skin (Tux by default) is applied as soon as the plugin is loaded; switch
 it with *Plugins → QRice → Skins* or the toolbar button (Skin Manager), off and
@@ -141,12 +145,19 @@ on with the manager's **Skin on** box.
 
 ## Good to know
 
-- QGIS keeps one layer tree per project, so the drawing order is shared by all view
-  tabs; each tab has its own layer visibility (a QGIS map theme) and extent.
-- 3D views and print layouts open in their own windows; their tabs bring them to the
-  front.
-- The icon theme is installed into QGIS's `resources/themes` folder when it is
-  writable, because QGIS 4 only reads UI themes from there.
+- Switching skins keeps the panes where you put them, except for skins that
+  rearrange them (Pro, tiling, zen, toolbars on the left): those put the panes back
+  as they were when switched off.
+
+With the Pro layout (Pro Light, Pro Dark, Pro QGIS-tan):
+
+- View tabs above the map show one map view at a time. QGIS keeps one layer tree
+  per project, so the drawing order is shared by all view tabs; each tab has its
+  own layer visibility (a QGIS map theme) and extent. 3D views and print layouts
+  open in their own windows; their tabs bring them to the front.
+- The Pro icon theme is installed into QGIS's `resources/themes` folder when it
+  is writable, because QGIS 4 only reads UI themes from there. The first time,
+  layer icons in Contents and Catalog change after a QGIS restart.
 
 ## Development
 
@@ -200,16 +211,25 @@ On Linux:
 ln -s "$PWD/qrice" ~/.local/share/QGIS/QGIS4/profiles/default/python/plugins/qrice
 ```
 
-**Tests.** `tests/` holds unit tests that need no QGIS window: coordinate
-formats, the undo log, the style sheet and icon references, default symbols
-and colour ramps, translations and metadata. Run them with QGIS's Python from
-the repository root (they also run in CI on QGIS 3.44 and the latest release):
+**Tests.** `tests/` holds unit tests that need no QGIS window: palettes, skins
+and their style sheets, the Skin Manager, window chrome, coordinate formats, the
+undo log, style sheet and icon references, default symbols and colour ramps,
+translations and metadata. Run them with QGIS's Python from the repository root
+(they also run in CI on QGIS 3.44 and the latest release):
+
+```bash
+QT_QPA_PLATFORM=offscreen python3 -m unittest discover -s tests -t . -v
+```
 
 ```powershell
 C:\OSGeo4W\bin\python-qgis.bat -m unittest discover -s tests -t . -v
 ```
 
-`tests/smoke_in_qgis.py` is a smoke test for a running QGIS with ArcSkin on:
+`tests/stress_in_qgis.py` runs inside QGIS (`qgis --code tests/stress_in_qgis.py`)
+and switches skins many times, the Pro layout included, moving the focus
+between panes; a crash is written to `fault.txt` (see the file for its settings).
+
+`tests/smoke_in_qgis.py` is a smoke test for a running QGIS with the Pro Light skin on:
 run it from the Python console and it switches the look off and on, checking
 that QGIS comes back as it was and that the skin is complete. It also lists
 any tool of QGIS's core toolbars that no ribbon button or drop-down reaches
@@ -218,20 +238,23 @@ yet).
 
 **Translations.** Texts in the code are English and go through `tr("...")`. After
 changing them run `python scripts/i18n.py update`, translate the new entries in
-`qrice/i18n/arcskin_pl.ts` (Qt Linguist or a text editor) and the `.qm` files are
+`qrice/i18n/arcskin_pl.ts` and `arcskin_pt.ts` (Qt Linguist or a text editor) and the `.qm` files are
 compiled when packaging. For a new language, add an empty
 `qrice/i18n/arcskin_<code>.ts` and run `update`.
 
 **Packaging and releases.** `python scripts/package.py` writes
 `dist/qrice-<version>.zip`. For a release, raise `version` in
-`qrice/metadata.txt`, tag the commit `v<version>` and push the tag; GitHub
-Actions builds the ZIP and attaches it to the release.
+`qrice/metadata.txt` and add a `changelog` line, tag the commit `v<version>` and
+push the tag; GitHub Actions builds the ZIP and attaches it to the release. Do not
+zip the plugin folder of a QGIS profile by hand: with the development link above,
+it holds only the link, not the plugin.
 
 ## Credits and licence
 
 QRice is licensed under the GPL-2.0-or-later, see [LICENSE](LICENSE). It is based
-on ArcSkin by EnviroSolutions (GPL-2.0-or-later). Mascot pictures: see
-[CREDITS.md](qrice/resources/skins/CREDITS.md). Country flags:
+on ArcSkin by EnviroSolutions (GPL-2.0-or-later). Skin pictures: see
+[CREDITS.md](qrice/resources/skins/CREDITS.md); the Arch Linux name and logo are
+trademarks of the Arch Linux project. Country flags:
 [flag-icons](https://github.com/lipis/flag-icons) (MIT). The Pro icon
 theme is derived from QGIS's own icons (GPL-2.0-or-later). Demo data: Natural
 Earth (public domain). Basemaps: © OpenStreetMap contributors, OpenTopoMap
